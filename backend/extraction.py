@@ -1,5 +1,3 @@
-import chromadb
-from chroma import get_patient_id
 from transformers import pipeline
 
 model_name = "deepset/roberta-base-squad2"
@@ -8,4 +6,4 @@ qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_n
 
 
 def extract_name(message: str) -> str:
-    return qa_pipeline({'question': "What is the user's name?", "context": message})["answer"]
+    return qa_pipeline(question="What is the user's name?", context=message)["answer"]

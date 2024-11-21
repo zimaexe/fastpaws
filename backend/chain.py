@@ -13,7 +13,6 @@ async def generate_ollama_stream_response(message: str, context) -> AsyncGenerat
     Answer: """
 
     prompt = ChatPromptTemplate.from_template(template1)
-    # template1.format(question=message, context=context)
     chain = prompt | OllamaLLM(model="llama3.2") 
     async for chunk in chain.astream({"question": message, "context":context}):
         print(chunk)

@@ -1,15 +1,11 @@
-from typing import Annotated
-
-from aiosqlite import Connection
-from starlette.responses import StreamingResponse
-
 from chain import generate_ollama_stream_response
 from chroma import get_patient_id
-from db import get_patient_data, get_db
+from db import get_patient_data
 from extraction import extract_name
-from fastapi import FastAPI, Depends
-from utils import build_context
+from fastapi import FastAPI
 from schemas import Message
+from starlette.responses import StreamingResponse
+from utils import build_context
 
 app = FastAPI()
 

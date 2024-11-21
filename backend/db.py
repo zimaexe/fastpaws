@@ -1,25 +1,10 @@
 import sqlite3
 from pathlib import Path
 
-import aiosqlite
 import pandas as pd
-from aiosqlite import Connection
-
-
-def get_db():
-    print(Path(__file__).parent / "storage" / "patients.db")
-    with sqlite3.connect(Path(__file__).parent / "storage" / "patients.db") as db:
-        try:
-            yield db
-        except Exception as e:
-            db.rollback()
-            raise e
-        finally:
-            db.close()
 
 
 async def upload_patients_data(csv_path: Path) -> None:
-    # print(db)
     with sqlite3.connect(Path(__file__).parent / "storage" / "patients.db") as db:
         pd.read_csv(csv_path).to_sql("patients", db, if_exists="replace")
 
@@ -30,4 +15,3 @@ def get_patient_data(patient_id: str) -> pd.DataFrame:
         rows = cursor.fetchall()
         columns = [column[0] for column in cursor.description]
         return pd.DataFrame(rows, columns=columns)
-        # print(rows)
