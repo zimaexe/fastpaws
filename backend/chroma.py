@@ -14,4 +14,7 @@ def add_patients(patients: pd.DataFrame):
 
 
 def get_patient_id(name: str) -> str:
-    return collection.query(query_texts=[name], n_results=1)["ids"][0][0]
+    result = collection.query(query_texts=[name], n_results=1)
+    if abs(result["distances"][0][0]) > 0.3:
+        return ""
+    return result["ids"][0][0]
