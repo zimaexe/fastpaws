@@ -18,4 +18,4 @@ async def generate_response(message: Message):
         raise HTTPException(status_code=404, detail="Couldn't find data for that name, please, input your name and surname clearer")
     data = get_patient_data(patient_id)
     context = build_context(data)
-    return StreamingResponse(generate_ollama_stream_response(message.text, context), media_type="text/event-stream")
+    return await generate_ollama_stream_response(message.text, context)
