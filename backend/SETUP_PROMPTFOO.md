@@ -1,4 +1,4 @@
-Install Node.js:
+# Install Node.js:
 
 ```
 # installs nvm (Node Version Manager)
@@ -14,12 +14,14 @@ node -v # should print `v22.11.0`
 npm -v # should print `10.9.0`
 ```
 
-Install promotofoo:
+# Install promotofoo:
 
 ```
 npx promptfoo@latest
 
 ```
+
+# Add to .env OPENAI_API_KEY
 
 To run:
 
