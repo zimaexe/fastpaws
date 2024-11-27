@@ -8,13 +8,13 @@ def build_context(patient_data: pd.DataFrame) -> str:
         row = row[1]
         context += template.format(
             row["nazov_lieku"],
-            row['datum_predpisu'],
-            row['datum_konca'],
+            row["datum_predpisu"],
+            row["datum_konca"],
             row["obdobie_lieku_dni"],
-            row['cena'],
+            row["cena"],
             row["mnozstvo"],
-            row['liek_vybral'] == 1,
-            row['poistovna_zaplatila_spravne'] == 1
+            row["liek_vybral"] == 1,
+            row["poistovna_zaplatila_spravne"] == 1,
         )
 
     return context
