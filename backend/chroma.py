@@ -7,9 +7,10 @@ collection = client.get_or_create_collection("patients")
 
 def add_patients(patients: pd.DataFrame):
     df = patients.drop_duplicates("patient_id")
-    assert (len(df["patient_id"]) == len(set(patients["patient_id"])))
+    assert len(df["patient_id"]) == len(set(patients["patient_id"]))
     collection.add(
-        documents=df[["meno", "priezvisko"]].agg(" ".join, axis=1).to_list(), ids=df["patient_id"].to_list()
+        documents=df[["meno", "priezvisko"]].agg(" ".join, axis=1).to_list(),
+        ids=df["patient_id"].to_list(),
     )
 
 
