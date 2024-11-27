@@ -12,7 +12,6 @@ app = FastAPI()
 
 @app.post("/generate")
 async def generate_response(message: Message):
-    print(message)
     name = extract_name(message.text)
     patient_id = get_patient_id(name)
     if not patient_id:
