@@ -54,6 +54,6 @@ def get_patient_data_with_agent(question: str, patient_id: str):
     answer = ""
     return agent.invoke(
         {"messages": [{"role": "user", "content": question}]},
-        {"recursion_limit": 10},
+        {"recursion_limit": 40},
         stream_mode="values",
     )["messages"][-1].content
