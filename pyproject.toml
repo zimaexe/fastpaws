@@ -23,6 +23,7 @@ langchain-openai = "^0.2.10"
 python-dotenv = "^1.0.1"
 langgraph = "^0.2.53"
 uvicorn = {extras = ["standard"], version = "^0.32.1"}
+aiofiles = "^24.1.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.10.0"
