@@ -14,6 +14,6 @@ async def generate_ollama_stream_response(message: str, context):
     Answer: """
 
     prompt = ChatPromptTemplate.from_template(template1)
-    chain = prompt | OllamaLLM(model="gemma2", temperature=0.1)
+    chain = prompt | OllamaLLM(model="mistral", temperature=0.1)
     async for chunk in chain.astream({"question": message, "context": context}):
         yield chunk
