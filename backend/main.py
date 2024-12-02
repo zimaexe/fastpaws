@@ -12,6 +12,16 @@ app = FastAPI()
 
 @app.post("/generate")
 async def generate_response(message: Message):
+    """
+    Generate a response from the Ollama LLM based on the user's message.
+    
+    Args:
+        message (Message): The user's message.
+
+    Returns:
+        StreamingResponse: The response from the Ollama LLM.
+        
+    """
     print(message)
     name = extract_name(message.text)
     patient_id = get_patient_id(name)
