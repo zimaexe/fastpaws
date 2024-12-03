@@ -84,7 +84,7 @@ def get_sql_agent(patient_id: str):
     )
 
 
-def get_patient_data_with_agent(question: str, patient_id: str):
+def get_patient_data_with_agent(question: str, patient_id: str) -> str:
     """
         Retrieves patient data using a SQL-based agent to answer a specific question.
 

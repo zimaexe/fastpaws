@@ -9,7 +9,7 @@ class Message(BaseModel):
 
     @field_validator("text")
     @classmethod
-    def text_is_not_empty(cls, v: str):
+    def text_is_not_empty(cls, v: str) -> str | None:
         """
         Validate that the input is not an empty string.
         
