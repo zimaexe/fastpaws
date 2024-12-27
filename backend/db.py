@@ -63,6 +63,9 @@ def build_prompt(patient_id: str) -> str:
     return f"""Context info: 
     Today is {date.today()}
     Id of the patient is {patient_id}
+    Context Instructions: Column names are in Slovak language. Each medication for specified amount of days costs only specified amount of money, do not do the product.
+    When patient asks about medication without specifying period, take into account all taking periods, so all occurences of specified medicine for this specific patient.
+    Answer Instructions: Collect from database as much data on dates and periods of medications taking as possible. Return the context not like an natural answer, bu like a stringified tabular data. Return type is string.
     SQL Instructions: {sql_prompt}
     """
 
@@ -77,7 +80,7 @@ def get_sql_agent(patient_id: str):
     Returns: A SQL-based agent.
     """
     db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
-    llm = ChatOpenAI(model="gpt-4o", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
     toolkit = SQLDatabaseToolkit(db=db, llm=llm)
     return create_react_agent(
         llm, toolkit.get_tools(), state_modifier=build_prompt(patient_id)
@@ -96,9 +99,8 @@ def get_patient_data_with_agent(question: str, patient_id: str) -> str:
             str: The answer to the user question.
     """
     agent = get_sql_agent(patient_id)
-    answer = ""
     return agent.invoke(
         {"messages": [{"role": "user", "content": question}]},
-        {"recursion_limit": 40},
+        {"recursion_limit": 100},
         stream_mode="values",
     )["messages"][-1].content
