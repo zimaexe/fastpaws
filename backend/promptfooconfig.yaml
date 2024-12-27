@@ -4,10 +4,10 @@ prompts:
   - "{{promt}}"
 providers:
   - id: "file:////home/vmware/UI-projekt-QA-bot/backend/eval_script.py"
-    label: "LLAMA3.2"
+    label: "ChatGPT + ChatGPT for DB"
     config:
       pythonExecutable: /home/vmware/.cache/pypoetry/virtualenvs/ui-projekt-qa-bot-oHk3zMK9-py3.12/bin/python3.12
-tests: 
+tests:
   - vars:
       promt: My name is Hortenzia Skutecká. What are the names of the drugs prescribed to me?
     assert:
