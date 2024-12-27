@@ -1,10 +1,12 @@
 from typing import AsyncGenerator
+from dotenv import load_dotenv
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_openai import ChatOpenAI
 
 async def generate_ollama_stream_response(message: str, context):
+    load_dotenv()
     template1 = """Given the following user question and context data from database, answer the user question.
     Dates are stored in year-month-day form in data. Try to answer human like and take all info from context to answer prettier.
     When answering medicins or taking periods relate answers, take in mind all occurences of each medicine, so your answer will be accurate for each patients' situation
