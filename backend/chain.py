@@ -1,5 +1,6 @@
 from typing import AsyncGenerator
 from dotenv import load_dotenv
+from langchain_core.output_parsers import StrOutputParser
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
@@ -16,6 +17,6 @@ async def generate_ollama_stream_response(message: str, context):
     Answer: """
 
     prompt = ChatPromptTemplate.from_template(template1)
-    chain = prompt | ChatOpenAI(model="gpt-4o", temperature=0.1)
+    chain = prompt | ChatOpenAI(model="gpt-4o", temperature=0.1) | StrOutputParser()
     async for chunk in chain.astream({"question": message, "context": context}):
         yield chunk
