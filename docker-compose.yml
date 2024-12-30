@@ -1,0 +1,24 @@
+services:
+
+  backend:
+    build: .
+    ports:
+      - 8000:8000
+    restart: always
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    volumes:
+      - ~/.models:/root/.ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0
+
