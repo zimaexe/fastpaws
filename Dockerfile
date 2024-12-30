@@ -16,6 +16,6 @@ EXPOSE 8000
 
 WORKDIR /app/backend
 
-# RUN python3.12 setup.py
+RUN python3.12 setup.py
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

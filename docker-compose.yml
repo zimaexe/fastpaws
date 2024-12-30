@@ -1,7 +1,7 @@
 services:
 
   backend:
-    build: .
+    image: ui_bot
     ports:
       - 8000:8000
     restart: always
