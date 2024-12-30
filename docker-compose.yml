@@ -11,8 +11,8 @@ services:
     pull_policy: always
     depends_on:
       - ollama
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    env_file:
+        - ./.env
 
   ollama:
     image: ollama/ollama:latest
