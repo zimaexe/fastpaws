@@ -3,7 +3,7 @@ name: CD Pipeline with Docker Compose
 on:
   push:
     branches:
-      - main, feat/docker
+      - feat/docker
 
 jobs:
   build-and-deploy:
