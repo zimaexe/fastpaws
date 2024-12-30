@@ -1,19 +1,24 @@
 services:
 
   backend:
-    image: ui_bot
+    build:
+       context: .
+    image: zemberovka/ui_bot:backend
     ports:
       - 8000:8000
     restart: always
+    pull_policy: always
     depends_on:
       - ollama
+    env_file:
+        - ./.env
 
   ollama:
     image: ollama/ollama:latest
     ports:
       - 11434:11434
     volumes:
-      - ~/.models:/root/.ollama
+      - ~/models:/root/.ollama
     container_name: ollama
     pull_policy: always
     tty: true
