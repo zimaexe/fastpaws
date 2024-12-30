@@ -1,0 +1,40 @@
+services:
+
+  backend:
+    container_name: backend
+    build:
+       context: .
+    image: $USERNAME/ui_bot:backend
+    ports:
+      - 8080:8000
+    restart: always
+    pull_policy: always
+    depends_on:
+      - ollama
+    env_file:
+        - ./.env
+
+  ollama:
+    container_name: ollama
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    volumes:
+      - /usr/share/ollama/.ollama:/root/.ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0
+
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    restart: always
+    environment:
+        - WATCHTOWER_CLEANUP=true
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /root/.docker/config.json:/config.json
+    command: --interval 30 backend ollama
