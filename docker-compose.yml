@@ -11,8 +11,6 @@ services:
     pull_policy: always
     depends_on:
       - ollama
-    env_file:
-        - ./.env
 
   ollama:
     image: ollama/ollama:latest
@@ -31,9 +29,10 @@ services:
   watchtower:
     container_name: watchtower
     image: containrrr/watchtower
+    restart: always
     environment:
         - WATCHTOWER_CLEANUP=true
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - /root/.docker/config.json:/config.json
-    command: --interval 30 express_starter
+    command: --interval 30 backend ollama
