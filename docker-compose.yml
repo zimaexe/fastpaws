@@ -28,6 +28,7 @@ services:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
 
+
   watchtower:
     container_name: watchtower
     image: containrrr/watchtower
