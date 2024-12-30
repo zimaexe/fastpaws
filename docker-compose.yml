@@ -3,7 +3,7 @@ services:
   backend:
     build:
        context: .
-    image: zemberovka/ui_bot:backend
+    image: $USERNAME/ui_bot:backend
     ports:
       - 8000:8000
     restart: always
