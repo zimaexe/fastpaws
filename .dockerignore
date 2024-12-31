@@ -1,0 +1,8 @@
+# .dockerignore
+node_modules
+bar
+backend/.env.example
+*.md
+backend/eval_script.py
+backend/promptfooconfig.yaml
+/.github

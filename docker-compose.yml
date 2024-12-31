@@ -15,19 +15,18 @@ services:
         - ./.env
 
   ollama:
+    container_name: ollama
     image: ollama/ollama:latest
     ports:
       - 11434:11434
     volumes:
       - /usr/share/ollama/.ollama:/root/.ollama
-    container_name: ollama
     pull_policy: always
     tty: true
     restart: always
     environment:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
-
 
   watchtower:
     container_name: watchtower
