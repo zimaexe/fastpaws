@@ -11,7 +11,7 @@ jobs:
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,6 +23,10 @@ jobs:
       - name: Run Docker Images
         run: |
           docker compose -f docker-compose.yml up -d
+
+      - name: Remove unused Docker Images
+        run: |
+          docker image prune -a -f
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
