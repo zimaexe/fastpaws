@@ -3,7 +3,7 @@ name: CD Pipeline with Docker Compose
 on:
   push:
     branches:
-      - feat/self-hosted
+      - main
 
 jobs:
   build-and-deploy:
@@ -11,7 +11,7 @@ jobs:
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
