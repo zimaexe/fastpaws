@@ -1,0 +1,17 @@
+name: Test Model by PromptFoo
+on:
+  issue_comment:
+    types: [created, edited]
+  workflow_run:
+    workflows: ["CD Pipeline with Docker Compose"]
+    types:
+      - completed
+jobs:
+  test-after-deployed:
+    if: contains(github.event.comment.body, '/test' && github.event.workflow_run.conclusion == 'success')
+
+    runs-on: self-hosted
+    steps:
+      - name: Exec promptfoo conteiner bash
+        run: |
+          docker exec promptfoo sh -c "cd /tests && promptfoo eval"

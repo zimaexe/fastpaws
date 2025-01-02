@@ -1,0 +1,21 @@
+description: "QA Bot evaluation"
+
+prompts:
+  - "{{promt}}"
+
+providers:
+  - id: http
+    config:
+      url: http://backend:8000/generate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        text: "{{promt}}"
+
+tests:
+  - vars:
+      promt: My name is Hortenzia Skutecká. What are the names of the drugs prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: "{'Amlodipín', 'Levotyroxín', 'Enalapril', 'Lisinopril', 'Paracetamol', 'Omeprazol', 'Simvastatín', 'Hydrochlorotiazid'}"
