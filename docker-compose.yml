@@ -13,6 +13,7 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
 
+
   ollama:
     container_name: ollama
     image: ollama/ollama:latest
@@ -26,3 +27,14 @@ services:
     environment:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
+
+  promptfoo:
+    container_name: promptfoo
+    image: ghcr.io/promptfoo/promptfoo:latest
+    ports:
+      - 3000:3000
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
+    volumes:
+      - ./tests/promptfoo:/tests
+      - /home/vmware/.promptfoo:/home/promptfoo/.promptfoo

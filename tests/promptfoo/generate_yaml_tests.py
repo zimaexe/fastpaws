@@ -191,10 +191,14 @@ if __name__ == "__main__":
 prompts:
   - "{{{{promt}}}}"
 providers:
-  - id: "file:////home/vmware/UI-projekt-QA-bot/backend/eval_script.py"
-    label: "LLAMA3.2"
+  - id: http
     config:
-      pythonExecutable: /home/vmware/.cache/pypoetry/virtualenvs/ui-projekt-qa-bot-oHk3zMK9-py3.12/bin/python3.12
+      url: http://backend:8000/generate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        text: "{{promt}}"
 tests: """)
 
         for i in range(10):
