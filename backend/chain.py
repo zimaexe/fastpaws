@@ -28,7 +28,7 @@ async def generate_ollama_stream_response(message: str, context) -> AsyncGenerat
 
     prompt = ChatPromptTemplate.from_template(template1)
 
-    chain = prompt | OllamaLLM(model="llama3.3", temperature=0.1, base_url="http://ollama:11434")
+    chain = prompt | OllamaLLM(model="llama3.2", temperature=0.1, base_url="http://ollama:11434")
     # chain = prompt | OllamaLLM(model="gemma2", temperature=0.1, base_url="http://ollama:11434")
     # chain = prompt | OllamaLLM(model="mistral", temperature=0.1, base_url="http://ollama:11434")
     # chain = prompt | ChatOpenAI(model="gpt-4o", temperature=0.1) | StrOutputParser()
