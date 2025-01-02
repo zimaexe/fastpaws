@@ -15,7 +15,702 @@ providers:
 
 tests:
   - vars:
-      promt: My name is Hortenzia Skutecká. What are the names of the drugs prescribed to me?
+      promt: >-
+        My name is Liliana Šmajdová. What are the names of the drugs prescribed
+        to me?
     assert:
       - type: model-graded-closedqa
-        value: "{'Amlodipín', 'Levotyroxín', 'Enalapril', 'Lisinopril', 'Paracetamol', 'Omeprazol', 'Simvastatín', 'Hydrochlorotiazid'}"
+        value: >-
+          {'Losartan', 'Simvastatín', 'Omeprazol', 'Ramipril', 'Metformín',
+          'Ibuprofen'}
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. How many days was my Metformín supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{170, 93, 133}"
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Ramipril'}"
+  - vars:
+      promt: My name is Liliana Šmajdová. What price did I pay for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {3.06, 7.77, 7.7}
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. On which date was my prescription for
+        Metformín issued?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          You were prescribed Metformín on {'2024-07-12', '2024-03-10',
+          '2024-01-19'}
+  - vars:
+      promt: My name is Liliana Šmajdová. Did I collect my Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Metformín'}
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. What is the quantity of Metformín
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Metformín prescribed to you is {59, 77}
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. What is the end date for my prescription
+        period for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Metformín is
+          ['2024-06-11' '2024-07-07' '2024-11-22']
+  - vars:
+      promt: >-
+        My name is Liliana Šmajdová. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 67.86 for all your medications
+  - vars:
+      promt: My name is Liliana Šmajdová. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. What are the names of the drugs prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Amlodipín', 'Losartan', 'Paracetamol', 'Simvastatín', 'Amoxicilín',
+          'Hydrochlorotiazid', 'Bisoprolol', 'Ibuprofen'}
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. How many days was my Paracetamol supposed
+        to last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{174}"
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No, you need to pay: {'Simvastatín', 'Bisoprolol', 'Losartan',
+          'Ibuprofen'}
+  - vars:
+      promt: My name is Slavomír Kostková. What price did I pay for Paracetamol?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {3.18}
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. On which date was my prescription for
+        Paracetamol issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Paracetamol on {'2022-10-21'}
+  - vars:
+      promt: My name is Slavomír Kostková. Did I collect my Paracetamol?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Paracetamol'}
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. What is the quantity of Paracetamol
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Paracetamol prescribed to you is {22}
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. What is the end date for my prescription
+        period for Paracetamol?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Paracetamol is
+          ['2023-04-13']
+  - vars:
+      promt: >-
+        My name is Slavomír Kostková. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 56.41 for all your medications
+  - vars:
+      promt: My name is Slavomír Kostková. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are woman
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. What are the names of the drugs prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Simvastatín', 'Omeprazol', 'Levotyroxín', 'Lisinopril',
+          'Hydrochlorotiazid', 'Bisoprolol', 'Metformín'}
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. How many days was my Metformín supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{55}"
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Hydrochlorotiazid', 'Omeprazol', 'Metformín'}"
+  - vars:
+      promt: My name is Radúz Palovčík. What price did I pay for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {5.05}
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. On which date was my prescription for
+        Metformín issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Metformín on {'2023-03-29'}
+  - vars:
+      promt: My name is Radúz Palovčík. Did I collect my Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Metformín'}
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. What is the quantity of Metformín prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Metformín prescribed to you is {52}
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. What is the end date for my prescription
+        period for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Metformín is
+          ['2023-05-23']
+  - vars:
+      promt: >-
+        My name is Radúz Palovčík. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 61.76 for all your medications
+  - vars:
+      promt: My name is Radúz Palovčík. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. What are the names of the drugs prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Atorvastatín', 'Simvastatín', 'Levotyroxín', 'Amoxicilín',
+          'Lisinopril', 'Hydrochlorotiazid', 'Metformín'}
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. How many days was my Metformín supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{139}"
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Simvastatín', 'Levotyroxín'}"
+  - vars:
+      promt: My name is Barbora Lukáčová. What price did I pay for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {5.64}
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. On which date was my prescription for
+        Metformín issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Metformín on {'2023-08-08'}
+  - vars:
+      promt: My name is Barbora Lukáčová. Did I collect my Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: Yes, you collected Metformín
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. What is the quantity of Metformín
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Metformín prescribed to you is {30}
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. What is the end date for my prescription
+        period for Metformín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Metformín is
+          ['2023-12-25']
+  - vars:
+      promt: >-
+        My name is Barbora Lukáčová. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 68.05 for all your medications
+  - vars:
+      promt: My name is Barbora Lukáčová. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are woman
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. What are the names of the drugs
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Amlodipín', 'Simvastatín', 'Omeprazol', 'Amoxicilín', 'Levotyroxín',
+          'Ibuprofen'}
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. How many days was my Amoxicilín supposed
+        to last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{35}"
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No, you need to pay: {'Amlodipín', 'Amoxicilín', 'Levotyroxín',
+          'Ibuprofen'}
+  - vars:
+      promt: My name is Judita Pavlíčeková. What price did I pay for Amoxicilín?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {3.5}
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. On which date was my prescription for
+        Amoxicilín issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Amoxicilín on {'2023-04-02'}
+  - vars:
+      promt: My name is Judita Pavlíčeková. Did I collect my Amoxicilín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Amoxicilín'}
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. What is the quantity of Amoxicilín
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Amoxicilín prescribed to you is {27}
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. What is the end date for my prescription
+        period for Amoxicilín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Amoxicilín is
+          ['2023-05-07']
+  - vars:
+      promt: >-
+        My name is Judita Pavlíčeková. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 62.86 for all your medications
+  - vars:
+      promt: My name is Judita Pavlíčeková. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are woman
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. What are the names of the drugs prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: "{'Amlodipín', 'Paracetamol', 'Ramipril', 'Metformín', 'Ibuprofen'}"
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. How many days was my Ibuprofen supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{108, 55}"
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No, you need to pay: {'Amlodipín', 'Metformín', 'Ibuprofen',
+          'Ramipril'}
+  - vars:
+      promt: My name is Lucia Selecká. What price did I pay for Ibuprofen?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {2.42, 4.26}
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. On which date was my prescription for
+        Ibuprofen issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Ibuprofen on {'2023-10-27', '2023-11-17'}
+  - vars:
+      promt: My name is Lucia Selecká. Did I collect my Ibuprofen?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Ibuprofen'}
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. What is the quantity of Ibuprofen prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Ibuprofen prescribed to you is {10, 11}
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. What is the end date for my prescription
+        period for Ibuprofen?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Ibuprofen is
+          ['2024-03-04' '2023-12-21']
+  - vars:
+      promt: >-
+        My name is Lucia Selecká. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 42.71 for all your medications
+  - vars:
+      promt: My name is Lucia Selecká. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. What are the names of the drugs prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Omeprazol', 'Lisinopril', 'Ramipril', 'Hydrochlorotiazid',
+          'Bisoprolol', 'Metformín'}
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. How many days was my Lisinopril supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{95}"
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Hydrochlorotiazid', 'Omeprazol', 'Metformín'}"
+  - vars:
+      promt: My name is Ladislava Palko. What price did I pay for Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {9.74}
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. On which date was my prescription for
+        Lisinopril issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Lisinopril on {'2024-09-27'}
+  - vars:
+      promt: My name is Ladislava Palko. Did I collect my Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Lisinopril'}
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. What is the quantity of Lisinopril
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Lisinopril prescribed to you is {46}
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. What is the end date for my prescription
+        period for Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Lisinopril is
+          ['2024-12-31']
+  - vars:
+      promt: >-
+        My name is Ladislava Palko. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 57.83 for all your medications
+  - vars:
+      promt: My name is Ladislava Palko. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. What are the names of the drugs prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          {'Paracetamol', 'Simvastatín', 'Amoxicilín', 'Levotyroxín',
+          'Lisinopril', 'Hydrochlorotiazid', 'Bisoprolol'}
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. How many days was my Lisinopril supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{136, 126}"
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No, you need to pay: {'Simvastatín', 'Amoxicilín', 'Lisinopril',
+          'Hydrochlorotiazid', 'Bisoprolol'}
+  - vars:
+      promt: My name is Alexia Barbora. What price did I pay for Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {10.11, 6.35}
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. On which date was my prescription for
+        Lisinopril issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Lisinopril on {'2023-06-01', '2022-12-22'}
+  - vars:
+      promt: My name is Alexia Barbora. Did I collect my Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Lisinopril'}
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. What is the quantity of Lisinopril prescribed
+        to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Lisinopril prescribed to you is {33, 49}
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. What is the end date for my prescription
+        period for Lisinopril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Lisinopril is
+          ['2023-05-07' '2023-10-05']
+  - vars:
+      promt: >-
+        My name is Alexia Barbora. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 86.58 for all your medications
+  - vars:
+      promt: My name is Alexia Barbora. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are woman
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. What are the names of the drugs prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: "{'Losartan', 'Atorvastatín', 'Ibuprofen', 'Paracetamol'}"
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. How many days was my Atorvastatín supposed to
+        last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{9, 110}"
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Losartan', 'Atorvastatín'}"
+  - vars:
+      promt: My name is Dominik Bobuľa. What price did I pay for Atorvastatín?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {14.59, 14.33}
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. On which date was my prescription for
+        Atorvastatín issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Atorvastatín on {'2024-07-12', '2024-05-05'}
+  - vars:
+      promt: My name is Dominik Bobuľa. Did I collect my Atorvastatín?
+    assert:
+      - type: model-graded-closedqa
+        value: Yes, you collected Atorvastatín
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. What is the quantity of Atorvastatín
+        prescribed to me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Atorvastatín prescribed to you is {38, 30}
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. What is the end date for my prescription
+        period for Atorvastatín?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Atorvastatín is
+          ['2024-08-23' '2024-07-21']
+  - vars:
+      promt: >-
+        My name is Dominik Bobuľa. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 49.48 for all your medications
+  - vars:
+      promt: My name is Dominik Bobuľa. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. What are the names of the drugs prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: "{'Amlodipín', 'Amoxicilín', 'Atorvastatín', 'Ramipril'}"
+  - vars:
+      promt: My name is Servác Ďurčo. How many days was my Ramipril supposed to last?
+    assert:
+      - type: model-graded-closedqa
+        value: "{82, 55}"
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. Did the insurance company pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: "No, you need to pay: {'Amlodipín', 'Ramipril'}"
+  - vars:
+      promt: My name is Servác Ďurčo. What price did I pay for Ramipril?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid {8.65, 7.87}
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. On which date was my prescription for Ramipril
+        issued?
+    assert:
+      - type: model-graded-closedqa
+        value: You were prescribed Ramipril on {'2023-06-05', '2023-12-20'}
+  - vars:
+      promt: My name is Servác Ďurčo. Did I collect my Ramipril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          No you did not collect all your medications, you need to took:
+          {'Ramipril'}
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. What is the quantity of Ramipril prescribed to
+        me?
+    assert:
+      - type: model-graded-closedqa
+        value: The quantity of Ramipril prescribed to you is {53, 47}
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. What is the end date for my prescription period
+        for Ramipril?
+    assert:
+      - type: model-graded-closedqa
+        value: >-
+          The end date for your prescription period for Ramipril is
+          ['2024-02-13' '2023-08-26']
+  - vars:
+      promt: >-
+        My name is Servác Ďurčo. How much money did I pay for all my
+        medications?
+    assert:
+      - type: model-graded-closedqa
+        value: You paid 56.01 for all your medications
+  - vars:
+      promt: My name is Servác Ďurčo. What is my gaender?
+    assert:
+      - type: model-graded-closedqa
+        value: You are man
+writeLatestResults: true
+sharing: true

@@ -6,6 +6,6 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
-      - name: Exec promptfoo conteiner bash
+      - name: Run tests
         run: |
           docker exec promptfoo sh -c "cd /tests && promptfoo eval"
