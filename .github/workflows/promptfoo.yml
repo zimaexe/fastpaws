@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Run tests
         run: |
-          docker exec promptfoo sh -c "cd /tests && promptfoo eval -j 1"
+          docker exec promptfoo sh -c "cd /tests && promptfoo eval -j 8"

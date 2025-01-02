@@ -30,6 +30,7 @@ services:
 
   promptfoo:
     container_name: promptfoo
+    restart: always
     image: ghcr.io/promptfoo/promptfoo:latest
     ports:
       - 3000:3000
