@@ -1,0 +1,11 @@
+name: Test Model by PromptFoo
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Run tests
+        run: |
+          docker exec promptfoo sh -c "cd /tests && promptfoo eval -j 8"

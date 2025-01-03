@@ -5,26 +5,31 @@ networks:
 
 services:
   backend:
-    build: .
-    image: ui_bot
+    container_name: backend
+    build:
+       context: .
+    image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
     env_file:
       - backend/.env
     ports:
-      - "8000:8000"
+      - "8080:8000"
     restart: always
     depends_on:
       - redis
       - ollama
     networks:
       - app_network
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
+
 
   ollama:
+    container_name: ollama
     image: ollama/ollama:latest
     ports:
       - "11434:11434"
     volumes:
-      - ~/.models:/root/.ollama
-    container_name: ollama
+      - /usr/share/ollama/.ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: always
