@@ -1,15 +1,9 @@
 import os
 from typing import AsyncGenerator
-from dotenv import load_dotenv
-from langchain_core.output_parsers import StrOutputParser
 
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnableWithMessageHistory
 from langchain_ollama import OllamaLLM
-from langchain_openai import ChatOpenAI
-from langchain_redis import RedisChatMessageHistory
 from langgraph.checkpoint.memory import MemorySaver
-from langgraph.prebuilt import create_react_agent
 
 from redis_client import REDIS_CLIENT
 
@@ -67,7 +61,7 @@ Answer: """
     res = await LLM.ainvoke(inputs["messages"])
     print()
 
-    return res == "YES"
+    return res.strip() == "YES"
 
 
 async def get_answer_from_context(question, chat_id):

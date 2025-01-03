@@ -8,7 +8,7 @@ services:
     container_name: backend
     build:
        context: .
-    image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
+#    image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
     env_file:
       - backend/.env
     ports:
@@ -19,8 +19,8 @@ services:
       - ollama
     networks:
       - app_network
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
+#    environment:
+#      - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
 
 
   ollama:
@@ -29,7 +29,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - /usr/share/ollama/.ollama:/root/.ollama
+      - ./.ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: always
