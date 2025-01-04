@@ -8,3 +8,5 @@ jobs:
       - uses: astral-sh/ruff-action@v3
         with:
           args: check --fix --output-format=github .
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
