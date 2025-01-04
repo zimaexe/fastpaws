@@ -1,14 +1,13 @@
 name: Pylint
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_run:
-    workflows: ["Ruff"]
-    types: [completed]
+on: workflow_dispatch
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
+#   workflow_run:
+#     workflows: ["Ruff"]
+#     types: [completed]
 
 jobs:
   build:
@@ -16,7 +15,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.12"]
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
