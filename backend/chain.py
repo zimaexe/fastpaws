@@ -1,10 +1,7 @@
 from typing import AsyncGenerator
-from dotenv import load_dotenv
-from langchain_core.output_parsers import StrOutputParser
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
-from langchain_openai import ChatOpenAI
 
 async def generate_ollama_stream_response(message: str, context) -> AsyncGenerator:
     """

@@ -3,7 +3,7 @@ from starlette.responses import StreamingResponse
 
 from chain import generate_ollama_stream_response
 from chroma import get_patient_id
-from db import get_patient_data, get_patient_data_with_agent
+from db import get_patient_data_with_agent
 from extraction import extract_name
 from schemas import Message
 
