@@ -4,6 +4,7 @@ from typing import AsyncGenerator
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI  # noqa
 from langgraph.checkpoint.memory import MemorySaver
 from redis_client import REDIS_CLIENT
 
