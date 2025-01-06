@@ -1,14 +1,16 @@
 import os
 from typing import AsyncGenerator
 
+from langchain_community.llms.openai import OpenAIChat
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import OllamaLLM
+from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import MemorySaver
 
 from redis_client import REDIS_CLIENT
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-LLM = OllamaLLM(model="mistral", temperature=0.5, base_url="http://localhost:11434")
+LLM = ChatOllama(model="mistral", temperature=0.3, base_url="http://localhost:11434")
 MEMORY = MemorySaver()
 
 async def generate_ollama_stream_response(message: str, context: str, chat_id: str) -> AsyncGenerator:
@@ -44,32 +46,34 @@ async def generate_ollama_stream_response(message: str, context: str, chat_id: s
         answer += chunk
         yield chunk
     await REDIS_CLIENT.set_conversation_data(chat_id, [("user", message), ("ai", answer)])
-    print("AFTER")
-    print(answer)
 
 
 async def analyze_history(question: str, chat_id):
-    # LLM = ChatOpenAI(model="gpt-4o-mini", temperature=0) # tests with another LLM
-    template1 = f"""Given the following user question and conversation history, define if user question can be answered from the existing chat messages.
-    As answer options use only words 'YES' or 'NO' depending on your final opinion. Analyze if user already provided relevant info in their questions, or if answer can be found in assistant's answers.
-    Examples: User provided their name in previous messages, medications info is already known.
-    Question: {question}
+    # LLM = ChatOpenAI(model="gpt-4o-mini", temperature=0.5).with_structured_output(AnswerSchema.model_json_schema())
+    chat = ChatOllama(model="mistral", temperature=0.5, base_url="http://localhost:11434") | StrOutputParser()
+    template1 = f"""
+Given the user question, define if it's possible to answer their question from existing conversation context. Answer with a word 'YES' and 'NO' depending on your opinion.
+DO NOT add any other words except this two and answer with only ONE word. You MUST NOT use any answer options except of 'YES' and 'NO', do not add any other symbols to your answer.
+When it comes to personal patient's data such as name, try to find it in previous messages.
 Answer: """
     inputs = {
-        "messages": await REDIS_CLIENT.get_conversation_data(chat_id) + [("system", template1), ("user", question)]
+        "messages": await REDIS_CLIENT.get_conversation_data(chat_id) +
+                    [("system", template1.strip()),
+                    ("user", f"Can the next question be answered from conversation context? Question: {question}.")]
     }
-    res = await LLM.ainvoke(inputs["messages"])
-    print()
+    res = await chat.ainvoke(inputs["messages"])
+    print(res)
 
     return res.strip() == "YES"
 
 
 async def get_answer_from_context(question, chat_id):
-    prompt = "From provided chat history, answer the user's question with as much details as possible"
+    prompt = "From provided conversation context, answer the user's question with as much details as possible."
     answer = ""
-    async for chunk in LLM.astream(
+    chat = ChatOllama(model="mistral", temperature=0.4, base_url="http://localhost:11434")
+    async for chunk in chat.astream(
             await REDIS_CLIENT.get_conversation_data(chat_id) + [("system", prompt), ("user", question)]
     ):
-        answer += chunk
-        yield chunk
+        answer += chunk.content
+        yield chunk.content
     await REDIS_CLIENT.set_conversation_data(chat_id, [("user", question), ("ai", answer)])
