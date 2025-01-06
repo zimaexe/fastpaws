@@ -1,12 +1,10 @@
 import os
 from typing import AsyncGenerator
 
-from langchain_community.llms.openai import OpenAIChat
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import MemorySaver
-
 from redis_client import REDIS_CLIENT
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
@@ -51,7 +49,7 @@ async def generate_ollama_stream_response(message: str, context: str, chat_id: s
 async def analyze_history(question: str, chat_id):
     # LLM = ChatOpenAI(model="gpt-4o-mini", temperature=0.5).with_structured_output(AnswerSchema.model_json_schema())
     chat = ChatOllama(model="mistral", temperature=0.5, base_url="http://localhost:11434") | StrOutputParser()
-    template1 = f"""
+    template1 = """
 Given the user question, define if it's possible to answer their question from existing conversation context. Answer with a word 'YES' and 'NO' depending on your opinion.
 DO NOT add any other words except this two and answer with only ONE word. You MUST NOT use any answer options except of 'YES' and 'NO', do not add any other symbols to your answer.
 When it comes to personal patient's data such as name, try to find it in previous messages.

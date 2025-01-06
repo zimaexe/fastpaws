@@ -1,15 +1,14 @@
-import uuid
 from typing import Annotated
 
-from fastapi import FastAPI, HTTPException, Cookie
-from starlette.responses import StreamingResponse
-
-from chain import generate_ollama_stream_response, analyze_history, get_answer_from_context
+from chain import (analyze_history, generate_ollama_stream_response,
+                   get_answer_from_context)
 from chroma import get_patient_id
-from db import get_patient_data, get_patient_data_with_agent
+from db import get_patient_data_with_agent
 from extraction import extract_name
+from fastapi import Cookie, FastAPI
 from redis_client import REDIS_CLIENT
 from schemas import Message
+from starlette.responses import StreamingResponse
 
 app = FastAPI()
 

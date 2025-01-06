@@ -1,5 +1,6 @@
 import json
-from typing import Type, Optional
+from typing import Optional
+
 import redis.asyncio as redis
 
 
