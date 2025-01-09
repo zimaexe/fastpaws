@@ -2,7 +2,6 @@ import asyncio
 from pathlib import Path
 
 import pandas as pd
-
 from chroma import add_patients
 from db import upload_patients_data
 

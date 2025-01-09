@@ -87,7 +87,7 @@ def get_sql_agent(patient_id: str):
     )
 
 
-def get_patient_data_with_agent(question: str, patient_id: str) -> str:
+async def get_patient_data_with_agent(question: str, patient_id: str) -> str:
     """
         Retrieves patient data using a SQL-based agent to answer a specific question.
 
@@ -99,8 +99,9 @@ def get_patient_data_with_agent(question: str, patient_id: str) -> str:
             str: The answer to the user question.
     """
     agent = get_sql_agent(patient_id)
-    return agent.invoke(
+    result = await agent.ainvoke(
         {"messages": [{"role": "user", "content": question}]},
         {"recursion_limit": 100},
         stream_mode="values",
-    )["messages"][-1].content
+    )
+    return result["messages"][-1].content

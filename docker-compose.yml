@@ -1,26 +1,46 @@
-services:
+networks:
+  app_network:
+    driver: bridge
 
+
+services:
   backend:
     container_name: backend
     build:
        context: .
     image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
+    env_file:
+      - backend/.env
     ports:
-      - 8080:8000
+      - "8080:8000"
     restart: always
     depends_on:
+      - redis
       - ollama
+    networks:
+      - app_network
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
 
+  promptfoo:
+      container_name: promptfoo
+      restart: always
+      image: ghcr.io/promptfoo/promptfoo:latest
+      ports:
+        - "3000:3000"
+      environment:
+        - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
+      volumes:
+        - ./tests/promptfoo:/tests
+        - /home/vmware/.promptfoo:/home/promptfoo/.promptfoo
 
   ollama:
     container_name: ollama
     image: ollama/ollama:latest
     ports:
-      - 11434:11434
+      - "11434:11434"
     volumes:
-      - /usr/share/ollama/.ollama:/root/.ollama
+      - ./.ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: always
@@ -28,14 +48,16 @@ services:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
 
-  promptfoo:
-    container_name: promptfoo
+  redis:
+    image: redis/redis-stack-server:latest
     restart: always
-    image: ghcr.io/promptfoo/promptfoo:latest
     ports:
-      - 3000:3000
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY?Variable not set}
+      - "6379:6379"
     volumes:
-      - ./tests/promptfoo:/tests
-      - /home/vmware/.promptfoo:/home/promptfoo/.promptfoo
+      - redis_data:/data
+    networks:
+      - app_network
+
+
+volumes:
+  redis_data:
