@@ -1,7 +1,5 @@
-import sys
-
 import pandas as pd
-
+import sys
 
 #Prompt 1
 #Q: My name is {patient_name}. What are the names of the drugs prescribed to me?
@@ -188,10 +186,10 @@ if __name__ == "__main__":
 
     with open('promptfooconfig.yaml', 'w', encoding='utf-8') as file:
         sys.stdout = file
-        print("""description: "QA Bot evaluation"
+        print(f"""description: "QA Bot evaluation"
 
 prompts:
-  - "{{promt}}"
+  - "{{{{promt}}}}"
 providers:
   - id: http
     config:
@@ -200,7 +198,7 @@ providers:
       headers:
         Content-Type: application/json
       body:
-        text: "{promt}"
+        text: "{{promt}}"
 tests: """)
 
         for i in range(10):

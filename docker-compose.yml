@@ -1,16 +1,9 @@
-networks:
-  app_network:
-    driver: bridge
-
-
 services:
   backend:
     container_name: backend
     build:
        context: .
     image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
-    env_file:
-      - backend/.env
     ports:
       - "8080:8000"
     restart: always
@@ -40,7 +33,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ./.ollama:/root/.ollama
+      - /usr/share/ollama/.ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: always
@@ -54,10 +47,10 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
+      - /home/vmware/redis_data:/data
     networks:
       - app_network
 
-
-volumes:
-  redis_data:
+networks:
+  app_network:
+    driver: bridge
