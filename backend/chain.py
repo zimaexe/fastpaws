@@ -18,7 +18,6 @@ Dependencies:
     - langgraph.checkpoint.memory.MemorySaver
     - redis_client.REDIS_CLIENT
 """
-import os
 from typing import AsyncGenerator
 
 from langchain_core.output_parsers import StrOutputParser
