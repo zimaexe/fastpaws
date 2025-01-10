@@ -11,7 +11,7 @@ class RedisClient:
         if cls._instance is None:
             cls._instance = super().__new__(cls)
             cls._instance.redis = redis.Redis(
-                host="localhost",
+                host="redis",
                 port=6379,
                 decode_responses=True
             )
