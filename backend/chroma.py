@@ -1,7 +1,9 @@
+import pathlib
+
 import chromadb
 import pandas as pd
 
-client = chromadb.PersistentClient(path="./storage/chroma")
+client = chromadb.PersistentClient(path=str(pathlib.Path(__file__).parent.joinpath("storage/chroma")))
 collection = client.get_or_create_collection("patients")
 
 

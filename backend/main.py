@@ -1,17 +1,20 @@
-from fastapi import FastAPI, HTTPException
-from starlette.responses import StreamingResponse
+from typing import Annotated
 
-from chain import generate_ollama_stream_response
+from chain import (analyze_history, generate_ollama_stream_response,
+                   get_answer_from_context)
 from chroma import get_patient_id
 from db import get_patient_data_with_agent
 from extraction import extract_name
+from fastapi import Cookie, FastAPI
+from redis_client import REDIS_CLIENT
 from schemas import Message
+from starlette.responses import StreamingResponse
 
 app = FastAPI()
 
 
 @app.post("/generate")
-async def generate_response(message: Message):
+async def generate_response(message: Message, chat_id: Annotated[str, Cookie()]):
     """
     Generate a response from the Ollama LLM based on the user's message.
 
@@ -23,15 +26,21 @@ async def generate_response(message: Message):
 
     """
     print(message)
-    name = extract_name(message.text)
-    patient_id = get_patient_id(name)
+
+    patient_id = await REDIS_CLIENT.get_patient_id(chat_id)
     if not patient_id:
-        raise HTTPException(
-            status_code=404,
-            detail="Couldn't find data for that name, please, input your name and surname clearer",
+        name = extract_name(message.text)
+        patient_id = get_patient_id(name)
+        await REDIS_CLIENT.set_patient_id(chat_id, patient_id)
+
+    is_info_available = await analyze_history(message.text, chat_id)
+    if is_info_available:
+        return StreamingResponse(
+            get_answer_from_context(message.text, chat_id),
+            media_type="text/event-stream",
         )
-    context = get_patient_data_with_agent(message.text, patient_id)
+    context = await get_patient_data_with_agent(message.text, patient_id)
     return StreamingResponse(
-        generate_ollama_stream_response(message.text, context),
+        generate_ollama_stream_response(message.text, context, chat_id),
         media_type="text/event-stream",
     )
