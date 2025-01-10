@@ -8,8 +8,8 @@ from langchain_openai import ChatOpenAI  # noqa
 from langgraph.checkpoint.memory import MemorySaver
 from redis_client import REDIS_CLIENT
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-LLM = ChatOllama(model="mistral", temperature=0.3, base_url="http://localhost:11434")
+# REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+LLM = ChatOllama(model="mistral", temperature=0.3, base_url="http://ollama:11434")
 MEMORY = MemorySaver()
 
 async def generate_ollama_stream_response(message: str, context: str, chat_id: str) -> AsyncGenerator:
