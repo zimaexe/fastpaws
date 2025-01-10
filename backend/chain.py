@@ -42,8 +42,8 @@ async def generate_ollama_stream_response(message: str, context: str, chat_id: s
     # chain = prompt | ChatOpenAI(model="gpt-4o", temperature=0.1) | StrOutputParser()
     answer = ""
     async for chunk in chain.astream({"question": message, "context": context}):
-        answer += chunk
-        yield chunk
+        answer += chunk.content
+        yield chunk.content
     await REDIS_CLIENT.set_conversation_data(chat_id, [("user", message), ("ai", answer)])
 
 
