@@ -25,4 +25,4 @@ jobs:
           pip install pylint
       - name: Analysing the code with pylint
         run: |
-          pylint $(git ls-files ':(glob)backend/*.py') --disable=all --enable=C0114,C0115,C0116,C0301 --fail-under=9
+          pylint $(git ls-files ':(glob)backend/*.py') --disable=all --enable=C0114,C0115,C0116,C0301
