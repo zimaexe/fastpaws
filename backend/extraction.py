@@ -1,3 +1,13 @@
+"""
+This module contains the function to extract the user's name from a message.
+
+Functions:
+    extract_name(message: str) -> str:
+        Extract the user's name from the message using a question-answering model.
+
+Dependencies:
+    - pipeline
+"""
 from transformers import pipeline
 
 model_name = "deepset/roberta-base-squad2"
