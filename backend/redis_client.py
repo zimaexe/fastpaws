@@ -1,9 +1,11 @@
 """
-This module provides an interface to interact with a Redis database for storing and retrieving conversation data and patient IDs.
+This module provides an interface to interact with a Redis database
+for storing and retrieving conversation data and patient IDs.
 
 Classes:
     RedisClient:
-        A singleton class to manage Redis connections and perform operations such as getting and setting conversation data and patient IDs.
+        A singleton class to manage Redis connections and perform operations
+        such as getting and setting conversation data and patient IDs.
 
 Functions:
     get_conversation_data(chat_id: str) -> list:

@@ -1,12 +1,15 @@
 """
-This module provides functionality to generate responses using the Ollama language model and analyze conversation history.
+This module provides functionality to generate responses
+using the Ollama language model and analyze conversation history.
 
 Functions:
     generate_ollama_stream_response(message: str, context: str, chat_id: str) -> AsyncGenerator:
-        Asynchronously generates a response stream based on the given message and context using the Ollama language model.
+        Asynchronously generates a response stream based on
+        the given message and context using the Ollama language model.
 
     analyze_history(question: str, chat_id: str) -> bool:
-        Analyzes the conversation history to determine if a question can be answered from the existing context.
+        Analyzes the conversation history to determine if a
+        question can be answered from the existing context.
 
     get_answer_from_context(question: str, chat_id: str) -> AsyncGenerator:
         Generates an answer from the conversation context based on the user's question.
@@ -74,7 +77,8 @@ async def generate_ollama_stream_response(message: str,
 
 async def analyze_history(question: str, chat_id) -> bool:
     """
-    Analyze conversation history to determine if a question can be answered from the existing context.
+    Analyze conversation history to determine if a
+    question can be answered from the existing context.
 
     Args:
         question (str): The user question.

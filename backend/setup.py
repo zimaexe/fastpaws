@@ -1,5 +1,6 @@
 """
-This script is used to upload patient data to the SQLite database and add patients to the ChromaDB collection.
+This script is used to upload patient data to the SQLite
+database and add patients to the ChromaDB collection.
 
 Functions:
     setup():

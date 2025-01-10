@@ -1,7 +1,9 @@
 """
-This module contains functions for uploading patient data from a CSV file to an SQLite database, retrieving patient data from the database by patient ID,
-building a contextual prompt for a SQL-based agent using patient ID, creating a SQL-based agent with a given patient ID,
-and retrieving patient data using a SQL-based agent to answer a specific question.
+This module contains functions for uploading patient data from a CSV file
+to an SQLite database, retrieving patient data from the database by patient ID,
+building a contextual prompt for a SQL-based agent using patient ID, creating a
+SQL-based agent with a given patient ID, and retrieving patient data using a
+SQL-based agent to answer a specific question.
 
 Functions:
     upload_patients_data(csv_path: Path) -> None:

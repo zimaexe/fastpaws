@@ -1,5 +1,6 @@
 """
-This module provides the main entry point for generating responses using the Ollama language model in a FastAPI application.
+This module provides the main entry point for generating responses
+using the Ollama language model in a FastAPI application.
 
 Endpoints:
     - /generate: POST endpoint for generating responses from the Ollama LLM.
@@ -36,7 +37,10 @@ app = FastAPI()
 
 
 @app.post("/generate")
-async def generate_response(message: Message, chat_id: Annotated[str, Cookie()]) -> StreamingResponse:
+async def generate_response(
+    message: Message,
+    chat_id: Annotated[str, Cookie()]
+) -> StreamingResponse:
     """
     Generate a response from the Ollama LLM based on the user's message.
 
