@@ -26,6 +26,8 @@ services:
       volumes:
         - ./tests/promptfoo:/tests
         - /home/vmware/.promptfoo:/home/promptfoo/.promptfoo
+      networks:
+        - app_network
 
   ollama:
     container_name: ollama
@@ -40,8 +42,11 @@ services:
     environment:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
+    networks:
+      - app_network
 
   redis:
+    container_name: redis
     image: redis/redis-stack-server:latest
     restart: always
     ports:

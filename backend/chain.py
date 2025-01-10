@@ -28,8 +28,8 @@ from langchain_openai import ChatOpenAI  # noqa
 from langgraph.checkpoint.memory import MemorySaver
 from redis_client import REDIS_CLIENT
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-LLM = ChatOllama(model="mistral", temperature=0.3, base_url="http://localhost:11434")
+# REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+LLM = ChatOllama(model="mistral", temperature=0.3, base_url="http://ollama:11434")
 MEMORY = MemorySaver()
 
 async def generate_ollama_stream_response(message: str,
@@ -68,8 +68,8 @@ async def generate_ollama_stream_response(message: str,
     # chain = prompt | ChatOpenAI(model="gpt-4o", temperature=0.1) | StrOutputParser()
     answer = ""
     async for chunk in chain.astream({"question": message, "context": context}):
-        answer += chunk
-        yield chunk
+        answer += chunk.content
+        yield chunk.content
     await REDIS_CLIENT.set_conversation_data(chat_id, [("user", message), ("ai", answer)])
 
 
@@ -88,6 +88,7 @@ async def analyze_history(question: str, chat_id) -> bool:
     # temperature=0.5).with_structured_output(AnswerSchema.model_json_schema())
     chat = ChatOllama(model="mistral", temperature=0.5,
                       base_url="http://localhost:11434") | StrOutputParser()
+
     template1 = """
     Given the user question, define if it's possible to answer their question
     from existing conversation context. Answer with a word 'YES' and 'NO'
@@ -123,7 +124,7 @@ async def get_answer_from_context(question, chat_id) -> AsyncGenerator:
     prompt = ("From provided conversation context,"
               " answer the user's question with as much details as possible.")
     answer = ""
-    chat = ChatOllama(model="mistral", temperature=0.4, base_url="http://localhost:11434")
+    chat = ChatOllama(model="mistral", temperature=0.4, base_url="http://ollama:11434")
     async for chunk in chat.astream(
             await REDIS_CLIENT.get_conversation_data(chat_id) +
             [("system", prompt), ("user", question)]
