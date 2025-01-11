@@ -2,15 +2,33 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate
+} from 'react-router-dom';
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Page1 />} />
+        <Route path="/page2" element={<Page2 />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function Page1() {
+  const navigate = useNavigate();
   const [text, setText] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
   const handleClick = () => {
-    alert('Кнопка натиснута!');
+    navigate("/page2");
   };
   return (
     <>
@@ -35,7 +53,17 @@ function App() {
       </div >
       <img className='doctor-cat' src="./images/doctor-cat.png" alt="Icon" />
     </>
-  )
+  );
+}
+
+
+function Page2() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <button onClick={() => navigate("/")}>Return on 1 page</button>
+    </div>
+  );
 }
 
 export default App
