@@ -18,6 +18,19 @@
   src: url('./fonts/Roboto_Mono/RobotoMono-ThinItalic.ttf') format('truetype');
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 :root {
   --color-teal: #023E8A;
   --color-blue: #0096C7;
@@ -39,17 +52,12 @@ h1 {
 
 .doctor-cat {
   position: absolute;
-  /* Встановлює абсолютне позиціонування */
-  top: 350px;
-  /* Відступ зверху відносно батьківського елемента або body */
-  left: 1050px;
-  /* Відступ зліва */
   z-index: 10;
-  /* Забезпечує, щоб зображення було поверх інших елементів */
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 25%);
   width: 150px;
-  /* Встановлює ширину зображення */
   height: auto;
-  /* Пропорційна висота */
 }
 
 .bot-description {
@@ -61,46 +69,50 @@ h1 {
 .prompt {
   display: flex;
   height: 40px;
-  gap: 0;
+  gap: 5px;
   align-items: center;
+  width: 100%;
 }
 
 .image-button {
   margin: 0;
   padding: 0;
-  width: auto;
-  height: 90%;
+  height: 40px;
+  width: 40px;
   cursor: pointer;
   display: flex;
+  background-color: var(--color-teal);
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
 }
 
 .image-of-bottom {
-  height: 100%;
-  width: auto;
+  height: 50%;
+  width: 50%;
   padding: 0;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .image-button:focus {
   outline: none;
   background: none;
   border: none;
+  background-color: var(--color-teal);
 }
 
 .prompt-input {
-  width: 450px;
-  flex-grow: 1;
+  width: 100%;
   background-color: var(--color-blue);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-light-blue);
   font-family: RobotoMono;
-  height: 30px;
+  height: 40px;
   border-radius: 10px 0 0 10px;
   padding-left: 20px;
-  border: 2px solid #0096C7;
+  border: none;
   outline: none;
-  margin-right: 0;
-  padding-right: 0;
-  margin: 0;
 }
 
 .input-field:focus {
@@ -123,18 +135,53 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .white_field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 47%;
+  flex-direction: column;
+
   border-radius: 40px;
   background-color: white;
-  width: 600px;
-  max-width: 900px;
-  height: 300px;
-  max-height: 600px;
-  padding-top: 90px;
-  /* padding-bottom: 120px; */
-  padding-right: 100px;
-  padding-left: 100px;
+  padding: 90px 100px;
+  position: relative;
+}
+
+.messages {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  gap: 10px;
+}
+
+.messageBot {
+  background-color: var(--color-blue);
+  color: var(--color-text-light);
+  max-width: 40%;
+  padding: 6px;
+  border-radius: 0 10px 10px 10px;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.messageUser {
+  background-color: var(--color-gray);
+  color: var(--color-text-dark);
+  max-width: 40%;
+  padding: 6px;
+  border-radius: 10px 0 10px 10px;
+  text-align: left;
+  align-self: flex-end;
 }
