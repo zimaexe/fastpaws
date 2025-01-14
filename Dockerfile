@@ -10,8 +10,7 @@ COPY . /app/
 
 RUN poetry check
 
-RUN RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-root
+RUN RUN poetry install --no-interaction --no-root
 
 EXPOSE 8000
 
