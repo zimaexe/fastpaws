@@ -88,7 +88,7 @@ async def analyze_history(question: str, chat_id) -> bool:
         bool: True if the question can be answered from the existing context, False otherwise.
     """
     chat = (
-        ChatOllama(model="mistral", temperature=0.5, base_url="http://localhost:11434")
+        ChatOllama(model="mistral", temperature=0.5, base_url="http://ollama:11434")
         | StrOutputParser()
     )
 
