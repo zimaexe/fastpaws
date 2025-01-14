@@ -1,7 +1,34 @@
+"""
+This module provides the main entry point for generating responses
+using the Ollama language model in a FastAPI application.
+
+Endpoints:
+    - /generate: POST endpoint for generating responses from the Ollama LLM.
+
+Functions:
+    generate_response(message: Message, chat_id: Annotated[str, Cookie()]):
+        Generate a response from the Ollama LLM based on the user's message.
+
+Dependencies:
+    - fastapi.FastAPI
+    - starlette.responses.StreamingResponse
+    - chain.analyze_history
+    - chain.generate_ollama_stream_response
+    - chain.get_answer_from_context
+    - chroma.get_patient_id
+    - db.get_patient_data_with_agent
+    - extraction.extract_name
+    - redis_client.REDIS_CLIENT
+    - schemas.Message
+"""
+
 from typing import Annotated
 
-from chain import (analyze_history, generate_ollama_stream_response,
-                   get_answer_from_context)
+from chain import (
+    analyze_history,
+    generate_ollama_stream_response,
+    get_answer_from_context,
+)
 from chroma import get_patient_id
 from db import get_patient_data_with_agent
 from extraction import extract_name
@@ -14,7 +41,9 @@ app = FastAPI()
 
 
 @app.post("/generate")
-async def generate_response(message: Message, chat_id: Annotated[str, Cookie()]):
+async def generate_response(
+    message: Message, chat_id: Annotated[str, Cookie()]
+) -> StreamingResponse:
     """
     Generate a response from the Ollama LLM based on the user's message.
 

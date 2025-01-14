@@ -1,3 +1,7 @@
+"""
+This module contains utility functions for the backend.
+"""
+
 import pandas as pd
 
 
@@ -11,7 +15,14 @@ def build_context(patient_data: pd.DataFrame) -> str:
     Returns:
         str: A formatted string containing patient data.
     """
-    template = "Medicine: {}, Taking start: {}, Taking End: {}, Taking days: {}, Price: {}, Amount {}, is medicine taken away {}, insurance company paid {}\n"
+    template = "Medicine: {}, \
+                Taking start: {}, \
+                Taking End: {}, \
+                Taking days: {}, \
+                Price: {}, \
+                Amount {}, \
+                is medicine taken away {},\
+                insurance company paid {}\n"
     context = ""
     for row in patient_data.iterrows():
         row = row[1]

@@ -1,3 +1,23 @@
+"""
+This module contains functions for uploading patient data from a CSV file
+to an SQLite database, retrieving patient data from the database by patient ID,
+building a contextual prompt for a SQL-based agent using patient ID, creating a
+SQL-based agent with a given patient ID, and retrieving patient data using a
+SQL-based agent to answer a specific question.
+
+Functions:
+    upload_patients_data(csv_path: Path) -> None:
+        Upload patient data from a CSV file to the SQLite database.
+    get_patient_data(patient_id: str) -> pd.DataFrame:
+        Retrieve patient data from the SQLite database by patient ID.
+    build_prompt(patient_id: str) -> str:
+        Build a contextual prompt for a SQL-based agent using patient ID.
+    get_sql_agent(patient_id: str):
+        Create a SQL-based agent with a given patient ID.
+    get_patient_data_with_agent(question: str, patient_id: str) -> str:
+        Retrieves patient data using a SQL-based agent to answer a specific question.
+"""
+
 import sqlite3
 from datetime import date
 from pathlib import Path
@@ -19,7 +39,7 @@ PROMPT_TEMPLATE = hub.pull("langchain-ai/sql-agent-system-prompt")
 async def upload_patients_data(csv_path: Path) -> None:
     """
     Upload patient data from a CSV file to the SQLite database.
-    
+
     Args:
         csv_path (Path): Path to the CSV file with patient data.
     """
@@ -30,7 +50,7 @@ async def upload_patients_data(csv_path: Path) -> None:
 def get_patient_data(patient_id: str) -> pd.DataFrame:
     """
     Retrieve patient data from the SQLite database by patient ID.
-    
+
     Args:
         patient_id (str): The patient ID.
 
@@ -73,10 +93,10 @@ def build_prompt(patient_id: str) -> str:
 def get_sql_agent(patient_id: str):
     """
     Create a SQL-based agent with a given patient ID.
-    
+
     Args:
         patient_id (str): The patient ID.
-        
+
     Returns: A SQL-based agent.
     """
     db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
@@ -89,14 +109,14 @@ def get_sql_agent(patient_id: str):
 
 async def get_patient_data_with_agent(question: str, patient_id: str) -> str:
     """
-        Retrieves patient data using a SQL-based agent to answer a specific question.
+    Retrieves patient data using a SQL-based agent to answer a specific question.
 
-        Args:
-            question (str): The user question.
-            patient_id (str): The patient ID.
+    Args:
+        question (str): The user question.
+        patient_id (str): The patient ID.
 
-        Returns:
-            str: The answer to the user question.
+    Returns:
+        str: The answer to the user question.
     """
     agent = get_sql_agent(patient_id)
     result = await agent.ainvoke(

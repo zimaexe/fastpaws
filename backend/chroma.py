@@ -1,13 +1,29 @@
+"""
+This module provides functions for managing patient data in ChromaDB.
+
+Functions:
+    add_patients(patients: pd.DataFrame):
+        Add unique patients to the collection.
+    get_patient_id(name: str) -> str:
+        Retrieve patient ID based on the patient name from the ChromaDB collection.
+
+Dependencies:
+    - chromadb.PersistentClient
+    - pandas
+"""
+
 import pathlib
 
 import chromadb
 import pandas as pd
 
-client = chromadb.PersistentClient(path=str(pathlib.Path(__file__).parent.joinpath("storage/chroma")))
+client = chromadb.PersistentClient(
+    path=str(pathlib.Path(__file__).parent.joinpath("storage/chroma"))
+)
 collection = client.get_or_create_collection("patients")
 
 
-def add_patients(patients: pd.DataFrame):
+def add_patients(patients: pd.DataFrame) -> None:
     """
     Add unique patients to the collection.
 
@@ -36,9 +52,8 @@ def get_patient_id(name: str) -> str:
 
     Returns:
         str: The patient ID if a close match is found, otherwise an empty string.
-        
-    """
 
+    """
     result = collection.query(query_texts=[name], n_results=1)
     if abs(result["distances"][0][0]) > 0.3:
         return ""
