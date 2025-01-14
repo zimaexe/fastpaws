@@ -11,13 +11,14 @@ interface PromptProps {
 
 export default function Prompt({ isShort, text, placeholder, handleChange, onSend }: PromptProps) {
     return (
-        <div className={isShort ? 'prompt short' : 'prompt'}>
+        <div className={'prompt ' + (isShort ? 'short ' : '')}>
             <input
                 className='prompt-input'
                 type="text"
                 value={text}
                 onChange={handleChange}
                 placeholder={placeholder}
+                autoComplete="off"
             />
             <button className="send-button" onClick={onSend}>
                 <img src="/images/bottom.png" alt="Icon" />

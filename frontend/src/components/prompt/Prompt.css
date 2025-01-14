@@ -1,12 +1,13 @@
 .prompt {
+	--radius: 15px;
+	--size: 2.5rem;
 	display: flex;
-	align-items: flex-start;
-	height: 52px;
+	height: var(--size);
 	gap: 5px;
 	width: 100%;
 }
 
-.short {
+.prompt.short {
 	width: 46%;
 }
 
@@ -14,29 +15,32 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 52px;
-	width: 52px;
+	height: var(--size);
+	width: calc(var(--size) * 1.5);
 	cursor: pointer;
 	background-color: var(--color-teal);
-	border-radius: 0 20px 20px 0;
+	border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.send-button > img {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-left: -2px;
 }
 
 .send-button:focus {
-	outline: none;
-	background: none;
-	border: none;
-	background-color: var(--color-teal);
+	opacity: .8;
 }
 
 .prompt-input {
 	width: 100%;
 	background-color: var(--color-blue);
-	font-size: 20px;
+	font-size: 1rem;
 	color: var(--color-light-blue);
 	font-family: 'Roboto Mono';
 	height: 100%;
-	border-radius: 20px 0 0 20px;
-	padding-left: 20px;
+	border-radius: var(--radius) 0 0 var(--radius);
+	padding-left: 15px;
 }
 
 input, button {
@@ -44,17 +48,8 @@ input, button {
 	outline: none;
 }
 
-.input-field:focus {
-	border-color: #90E0EF;
-	outline: none;
-}
-
-::-webkit-input-placeholder {
-	color: #90E0EF;
-	font-family: 'Roboto Mono';
-}
-
-:-moz-placeholder {
-	color: #90E0EF;
+.prompt-input::placeholder {
+	color: var(--color-light-blue);
+	opacity: .4;
 	font-family: 'Roboto Mono';
 }

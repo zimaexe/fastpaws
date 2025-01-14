@@ -1,19 +1,13 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import ChatMessages, { Message } from '../components/messages/ChatMessages';
 import Prompt from '../components/prompt/Prompt';
 
 export default function ChatPage() {
-	// const navigate = useNavigate();
 	const [text, setText] = useState('');
 	
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value);
 	};
-	
-    // const handleClick = () => {
-	// 	navigate("/");
-	// };
 
 	const [messages, setMessages] = useState<Message[]>([
         { type: 'user', text: "I need help with my policy" },
@@ -29,13 +23,19 @@ export default function ChatPage() {
     const addMessage = (text: string, type: 'user' | 'bot') => {
         setMessages([...messages, { type, text }]);
         const messagesBlock = document.querySelector('.messages');
-        if (messagesBlock)
-            setTimeout(() => messagesBlock.scrollTo(0, messagesBlock.scrollHeight), 100);
+        if (messagesBlock) {
+            setTimeout(() => {
+                messagesBlock.scrollTo(0, messagesBlock.scrollHeight);
+                const inputElement = document.querySelector('.prompt-input') as HTMLInputElement
+                inputElement.value = '';
+                inputElement.focus();
+            }, 100);
+        }
     }
 
 	return (
 		<>
-			<div className="white_field wide">
+			<div className="white_field chat">
 				<p className='title-chat'>Chat</p>
                 <ChatMessages messages={messages}/>
                 <Prompt

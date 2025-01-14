@@ -22,7 +22,7 @@ export default function WelcomePage() {
 					<p className='bot-description'>I'm here to help you quickly access your information! Enter a name and your question, and I'll fetch the details about policies, claims, or medication coverage for you in no time.</p>
 				</div>
                 <Prompt
-                    isShort={false}
+                    isShort={true}
                     text={text}
                     placeholder="tell me about you"
                     handleChange={handleChange}

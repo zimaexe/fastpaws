@@ -6,7 +6,6 @@
 	/* box-sizing: border-box; */
 }
 
-
 html,
 body,
 #root {
@@ -32,13 +31,15 @@ body,
 }
 
 .title {
-	font-size: 44pt;
+	font-size: 2rem;
 	font-family: Poppins;
+	font-weight: bold;
 	color: var(--color-teal);
+	margin-bottom: 10px;
 }
 
 .title-chat {
-	font-size: 36pt;
+	font-size: 3rem;
 	font-family: Poppins;
 	color: var(--color-teal);
 	font-weight: bolder;
@@ -68,7 +69,7 @@ body,
 .bot-description {
 	color: var(--color-teal);
 	font-family: Nunito;
-	font-size: 20pt;
+	font-size: 1.25rem;
 }
 
 body {
@@ -89,11 +90,14 @@ body {
 
 	border-radius: 40px;
 	background-color: white;
-	padding: 120px 100px;
+	padding: 80px 90px;
 	position: relative;
 }
 
-.wide {
-	width: 77%;
+.white_field.chat {
+	/* align-items: center; */
+	/* width: 77%; */
+	width: 60%;
 	padding: 40px 90px;
 }
+
