@@ -10,7 +10,7 @@ COPY . /app/
 
 RUN poetry check
 
-RUN RUN poetry install --no-root
+RUN poetry install --no-root
 
 EXPOSE 8000
 
