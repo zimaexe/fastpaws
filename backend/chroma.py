@@ -11,13 +11,15 @@ Dependencies:
     - chromadb.PersistentClient
     - pandas
 """
+
 import pathlib
 
 import chromadb
 import pandas as pd
 
 client = chromadb.PersistentClient(
-    path=str(pathlib.Path(__file__).parent.joinpath("storage/chroma")))
+    path=str(pathlib.Path(__file__).parent.joinpath("storage/chroma"))
+)
 collection = client.get_or_create_collection("patients")
 
 
@@ -50,9 +52,8 @@ def get_patient_id(name: str) -> str:
 
     Returns:
         str: The patient ID if a close match is found, otherwise an empty string.
-        
-    """
 
+    """
     result = collection.query(query_texts=[name], n_results=1)
     if abs(result["distances"][0][0]) > 0.3:
         return ""

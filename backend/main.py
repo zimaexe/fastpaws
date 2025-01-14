@@ -21,10 +21,14 @@ Dependencies:
     - redis_client.REDIS_CLIENT
     - schemas.Message
 """
+
 from typing import Annotated
 
-from chain import (analyze_history, generate_ollama_stream_response,
-                   get_answer_from_context)
+from chain import (
+    analyze_history,
+    generate_ollama_stream_response,
+    get_answer_from_context,
+)
 from chroma import get_patient_id
 from db import get_patient_data_with_agent
 from extraction import extract_name
@@ -38,8 +42,7 @@ app = FastAPI()
 
 @app.post("/generate")
 async def generate_response(
-    message: Message,
-    chat_id: Annotated[str, Cookie()]
+    message: Message, chat_id: Annotated[str, Cookie()]
 ) -> StreamingResponse:
     """
     Generate a response from the Ollama LLM based on the user's message.

@@ -24,6 +24,7 @@ Dependencies:
     - json
     - redis.asyncio
 """
+
 import json
 from typing import Optional
 
@@ -31,15 +32,20 @@ import redis.asyncio as redis
 
 
 class RedisClient:
+    """
+    RedisClient is a singleton class that provides asynchronous methods to interact
+    with a Redis database.
+    It allows storing and retrieving conversation data and patient IDs associated
+    with chat IDs.
+    """
+
     _instance: Optional["RedisClient"] = None
 
     def __new__(cls) -> "RedisClient":
         if cls._instance is None:
             cls._instance = super().__new__(cls)
             cls._instance.redis = redis.Redis(
-                host="redis",
-                port=6379,
-                decode_responses=True
+                host="redis", port=6379, decode_responses=True
             )
         return cls._instance
 
@@ -53,7 +59,7 @@ class RedisClient:
         Returns:
             list: The conversation data.
         """
-        result = (await self._instance.redis.get(f"chat:{chat_id}"))
+        result = await self._instance.redis.get(f"chat:{chat_id}")
         return json.loads(result) if result else []
 
     async def set_conversation_data(self, chat_id, data) -> None:
