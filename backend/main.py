@@ -22,7 +22,6 @@ Dependencies:
     - schemas.Message
 """
 
-from typing import Annotated
 
 from chain import (
     analyze_history,
@@ -32,7 +31,7 @@ from chain import (
 from chroma import get_patient_id
 from db import get_patient_data_with_agent
 from extraction import extract_name
-from fastapi import Cookie, FastAPI
+from fastapi import FastAPI
 from redis_client import REDIS_CLIENT
 from schemas import Message
 from starlette.responses import StreamingResponse
