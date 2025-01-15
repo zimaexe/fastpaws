@@ -53,7 +53,7 @@ app.add_middleware(
 
 @app.post("/generate")
 async def generate_response(
-    message: Message, chat_id: Annotated[str, Cookie()]
+    message: Message
 ) -> StreamingResponse:
     """
     Generate a response from the Ollama LLM based on the user's message.
@@ -67,20 +67,20 @@ async def generate_response(
     """
     print(message)
 
-    patient_id = await REDIS_CLIENT.get_patient_id(chat_id)
+    patient_id = await REDIS_CLIENT.get_patient_id(message.chat_id)
     if not patient_id:
         name = extract_name(message.text)
         patient_id = get_patient_id(name)
-        await REDIS_CLIENT.set_patient_id(chat_id, patient_id)
+        await REDIS_CLIENT.set_patient_id(message.chat_id, patient_id)
 
-    is_info_available = await analyze_history(message.text, chat_id)
+    is_info_available = await analyze_history(message.text, message.chat_id)
     if is_info_available:
         return StreamingResponse(
-            get_answer_from_context(message.text, chat_id),
+            get_answer_from_context(message.text, message.chat_id),
             media_type="text/event-stream",
         )
     context = await get_patient_data_with_agent(message.text, patient_id)
     return StreamingResponse(
-        generate_ollama_stream_response(message.text, context, chat_id),
+        generate_ollama_stream_response(message.text, context, message.chat_id),
         media_type="text/event-stream",
     )

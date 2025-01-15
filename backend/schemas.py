@@ -15,6 +15,7 @@ class Message(BaseModel):
     """
 
     text: str
+    chat_id: str
 
     @field_validator("text")
     @classmethod
