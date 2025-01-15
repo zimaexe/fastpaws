@@ -36,9 +36,17 @@ from fastapi import Cookie, FastAPI
 from redis_client import REDIS_CLIENT
 from schemas import Message
 from starlette.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/generate")
 async def generate_response(
