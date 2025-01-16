@@ -43,6 +43,13 @@ export default function ChatPage() {
             }
         })
             .then(response => {
+                if(response.status == 400){
+                    setMessages([...newMessages, { type: 'bot', text: 'I am sorry, but I can not find you in our database. Please provide your name or request some help from administrator.' }]);
+                    setLocked(false);
+                    return newMessages;
+                }
+                else
+                {
                 const stream = response.body;
                 if (!stream)
                     throw new Error('ReadableStream is not yet supported in this browser.');
@@ -69,7 +76,7 @@ export default function ChatPage() {
                         });
                 };
                 readChunk();
-            })
+            }})
             .catch(error => {
                 setLocked(false);
                 console.error(error);
