@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	/* box-sizing: border-box; */
+}
+
+html,
+body,
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+#root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+:root {
+	--color-teal: #023E8A;
+	--color-blue: #0096C7;
+	--color-light-teal: #99FFFF;
+	--color-light-blue: #90E0EF;
+	--color-gray: #D9D9D9;
+	--color-text-light: #C3EAFF;
+	--color-text-dark: #2E5077;
+}
+
+.title {
+	font-size: 2rem;
+	font-family: Poppins;
+	font-weight: bold;
+	color: var(--color-teal);
+	margin-bottom: 10px;
+}
+
+.title-chat {
+	font-size: 3rem;
+	font-family: Poppins;
+	color: var(--color-teal);
+	font-weight: bolder;
+}
+
+
+.doctor-cat {
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	right: 0;
+	transform: translate(50%, 25%);
+	width: 150px;
+	height: auto;
+}
+
+.doctor-cat-chat {
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	right: 0;
+	transform: translate(50%, 10%);
+	width: 150px;
+	height: auto;
+}
+
+.bot-description {
+	color: var(--color-teal);
+	font-family: Nunito;
+	font-size: 1.25rem;
+}
+
+body {
+	background-color: var(--color-teal);
+	display: flex;
+	justify-content: center;
+	align-items: center;;
+}
+
+.white_field {
+	display: flex;
+	align-items: start;
+	/* align-items: center; */
+	justify-content: center;
+	gap: 40px;
+	/* width: 47%; */
+	width: calc((900 / 1920) * 100%);
+	flex-direction: column;
+
+	border-radius: 40px;
+	background-color: white;
+	padding: 80px 90px;
+	position: relative;
+}
+
+.white_field.chat {
+	align-items: center;
+	/* width: 77%; */
+	width: 60%;
+	padding: 40px 90px;
+}

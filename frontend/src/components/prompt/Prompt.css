@@ -1,0 +1,61 @@
+.prompt {
+	--radius: 15px;
+	--size: 2.5rem;
+	display: flex;
+	height: var(--size);
+	gap: 5px;
+	width: 100%;
+}
+
+.prompt.short {
+	width: 46%;
+}
+
+.send-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--size);
+	width: calc(var(--size) * 1.5);
+	cursor: pointer;
+	background-color: var(--color-teal);
+	border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.send-button > img {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-left: -2px;
+}
+
+.send-button:focus {
+	opacity: .8;
+}
+
+.prompt-input {
+	width: 100%;
+	background-color: var(--color-blue);
+	font-size: 1rem;
+	color: var(--color-light-blue);
+	font-family: 'Roboto Mono';
+	height: 100%;
+	border-radius: var(--radius) 0 0 var(--radius);
+	padding-left: 15px;
+	transition: all 2s;
+}
+
+input, button {
+	border: none;
+	outline: none;
+}
+
+.prompt-input::placeholder {
+	color: var(--color-light-blue);
+	opacity: .4;
+	font-family: 'Roboto Mono';
+}
+
+.prompt-input:disabled {
+	background-color: var(--color-teal);
+	opacity: .5;
+}
