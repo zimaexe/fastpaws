@@ -1,37 +1,91 @@
 import { useState } from 'react';
 import ChatMessages, { Message } from '../components/messages/ChatMessages';
 import Prompt from '../components/prompt/Prompt';
+import { useLocation } from 'react-router-dom';
 
 export default function ChatPage() {
-	const [text, setText] = useState('');
+    const [text, setText] = useState('');
+    const [, setLastBotMessage] = useState('');
+    const [locked, setLocked] = useState(false);
+
+    const location = useLocation();
+    const initialPrompt = location.state?.prompt || '';
 	
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value);
 	};
 
 	const [messages, setMessages] = useState<Message[]>([
-        { type: 'user', text: "I need help with my policy" },
-        { type: 'bot', text: "Sure! I can help with that. Please provide me with your policy number." },
-        { type: 'user', text: "123456" },
-        { type: 'bot', text: "I found your policy. It covers your pet's medical expenses up to $10,000 per year." },
-        { type: 'user', text: "Thank you!" },
-        { type: 'bot', text: "You're welcome! Is there anything else I can help you with?" },
-        { type: 'user', text: "No, that's all. Thanks!" },
-        { type: 'bot', text: "Have a great day!" },
+        // { type: 'bot', text: "Hello, how can I help you?" },
     ]);
 
-    const addMessage = (text: string, type: 'user' | 'bot') => {
-        setMessages([...messages, { type, text }]);
+    const scrollToBottom = () => {
         const messagesBlock = document.querySelector('.messages');
-        if (messagesBlock) {
-            setTimeout(() => {
-                messagesBlock.scrollTo(0, messagesBlock.scrollHeight);
-                const inputElement = document.querySelector('.prompt-input') as HTMLInputElement
-                inputElement.value = '';
-                inputElement.focus();
-            }, 100);
-        }
+        if (messagesBlock) setTimeout(() => messagesBlock.scrollTo(0, messagesBlock.scrollHeight), 100);
     }
+
+    const addMessage = (text: string, type: 'user' | 'bot') => {
+        if (text == '') return;
+        setText('');
+        setLocked(true);
+        console.log("clearing input");
+        let newMessages = [...messages, { type, text }];
+        if (text == 'sosal?')
+            newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
+                
+        fetch('http://backend:8080/generate', {
+            method: 'POST',
+            body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                const stream = response.body;
+                if (!stream)
+                    throw new Error('ReadableStream is not yet supported in this browser.');
+                const reader = stream.getReader();
+                const readChunk = () => {
+                    reader.read()
+                        .then(({ value, done }) => {
+                            if (done) {
+                                setLocked(false);
+                                console.log('Stream finished');
+                                return;
+                            }
+                            const chunkString = new TextDecoder().decode(value);
+                            setLastBotMessage(prev => {
+                                const updatedMessage = prev + chunkString;
+                                setMessages([...newMessages, { type: 'bot', text: updatedMessage }]);
+                                return updatedMessage;
+                            });
+                            readChunk();
+                        })
+                        .catch(error => {
+                            setLocked(false);
+                            console.error(error);
+                        });
+                };
+                readChunk();
+            })
+            .catch(error => {
+                setLocked(false);
+                console.error(error);
+            });
+
+        setLastBotMessage(() => {
+            scrollToBottom();
+            return '';
+        });
+        setMessages(newMessages);
+        scrollToBottom();
+    }
+
+    useState(() => {
+        if (initialPrompt)
+            addMessage(initialPrompt, 'user');
+    });
 
 	return (
 		<>
@@ -39,14 +93,17 @@ export default function ChatPage() {
 				<p className='title-chat'>Chat</p>
                 <ChatMessages messages={messages}/>
                 <Prompt
+                    locked={locked}
+                    // lockFunction={() => setLocked(true)}
                     isShort={true}
                     text={text}
                     placeholder="write your message"
                     handleChange={handleChange}
-                    onSend={() => addMessage(text, 'user')}
+                    onSend={() => {addMessage(text, 'user')}}
                 />
 				<img className='doctor-cat-chat' src="./images/doctor-cat.png" alt="Icon" />
 			</div >
 		</>
 	);
 }
+

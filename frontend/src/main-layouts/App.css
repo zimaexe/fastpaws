@@ -81,7 +81,8 @@ body {
 
 .white_field {
 	display: flex;
-	align-items: center;
+	align-items: start;
+	/* align-items: center; */
 	justify-content: center;
 	gap: 40px;
 	/* width: 47%; */
@@ -95,9 +96,8 @@ body {
 }
 
 .white_field.chat {
-	/* align-items: center; */
+	align-items: center;
 	/* width: 77%; */
 	width: 60%;
 	padding: 40px 90px;
 }
-

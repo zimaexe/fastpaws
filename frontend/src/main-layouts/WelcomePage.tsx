@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Prompt from '../components/prompt/Prompt';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function WelcomePage() {
 	const navigate = useNavigate();
@@ -11,7 +12,11 @@ export default function WelcomePage() {
 	};
 	
     const handleClick = () => {
-		navigate("/chat");
+        document.cookie = `chat_id=${uuidv4()}`;
+        console.log(document.cookie);
+		navigate("/chat", {
+			state: { prompt: text },
+		});
 	};
 
 	return (
@@ -22,6 +27,8 @@ export default function WelcomePage() {
 					<p className='bot-description'>I'm here to help you quickly access your information! Enter a name and your question, and I'll fetch the details about policies, claims, or medication coverage for you in no time.</p>
 				</div>
                 <Prompt
+					locked={false}
+					// lockFunction={() => {}}
                     isShort={true}
                     text={text}
                     placeholder="tell me about you"
