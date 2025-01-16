@@ -56,6 +56,19 @@ services:
     networks:
       - app_network
 
+  frontend:
+    container_name: frontend
+    build:
+       context: ./frontend
+    image: ${DOCKER_USERNAME?Variable not set}/ui_bot:frontend
+    ports:
+      - "80:3000"
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
 networks:
   app_network:
     driver: bridge
