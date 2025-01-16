@@ -24,6 +24,7 @@ export default function ChatPage() {
         if (messagesBlock) setTimeout(() => messagesBlock.scrollTo(0, messagesBlock.scrollHeight), 100);
     }
 
+
     const addMessage = (text: string, type: 'user' | 'bot') => {
         if (text == '') return;
         setText('');
