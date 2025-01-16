@@ -31,7 +31,7 @@ from chain import (
 from chroma import get_patient_id
 from db import get_patient_data_with_agent
 from extraction import extract_name
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from redis_client import REDIS_CLIENT
 from schemas import Message
 from starlette.responses import StreamingResponse
@@ -71,6 +71,9 @@ async def generate_response(
         name = extract_name(message.text)
         patient_id = get_patient_id(name)
         await REDIS_CLIENT.set_patient_id(message.chat_id, patient_id)
+
+    if not patient_id:
+        raise HTTPException(400, "Patient was not found")
 
     is_info_available = await analyze_history(message.text, message.chat_id)
     if is_info_available:
