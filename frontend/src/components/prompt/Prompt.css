@@ -28,8 +28,8 @@
 	margin-left: -2px;
 }
 
-.send-button:focus {
-	opacity: .8;
+.send-button:focus, .prompt-input:focus {
+	box-shadow: 0 0 4px 2px var(--color-blue);
 }
 
 .prompt-input {
@@ -41,12 +41,12 @@
 	height: 100%;
 	border-radius: var(--radius) 0 0 var(--radius);
 	padding-left: 15px;
-	transition: all 2s;
 }
 
 input, button {
 	border: none;
 	outline: none;
+	transition: all .3s;
 }
 
 .prompt-input::placeholder {
