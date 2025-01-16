@@ -5,7 +5,7 @@ services:
        context: .
     image: ${DOCKER_USERNAME?Variable not set}/ui_bot:backend
     ports:
-      - "8080:8000"
+      - "8000:8000"
     restart: always
     depends_on:
       - redis

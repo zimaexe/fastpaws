@@ -34,7 +34,7 @@ export default function ChatPage() {
         if (text == 'sosal?')
             newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
 
-        fetch('http://147.232.205.139:8080/generate', {
+        fetch('http://147.232.205.139:8000/generate', {
             method: 'POST',
             body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
             headers: {
