@@ -10,7 +10,7 @@ export default function ChatPage() {
 
     const location = useLocation();
     const initialPrompt = location.state?.prompt || '';
-	
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value);
 	};
@@ -32,8 +32,8 @@ export default function ChatPage() {
         let newMessages = [...messages, { type, text }];
         if (text == 'sosal?')
             newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
-                
-        fetch('http://backend:8080/generate', {
+
+        fetch('http://0.0.0.0:8080/generate', {
             method: 'POST',
             body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
             headers: {
