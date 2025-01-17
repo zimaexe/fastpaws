@@ -7,3 +7,6 @@ backend/eval_script.py
 backend/promptfooconfig.yaml
 /.github
 !README.md
+documentation.pdf
+presentation.pdf
+tests/*
