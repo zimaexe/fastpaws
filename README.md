@@ -24,27 +24,55 @@ This project was a semestral project made as part of the Artificial Intelligence
 
 Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta)
 
-## Service
+## Setting up environment using Docker
 
-Project is divided on backend and frontend part
+> [!NOTE]
+> Install `docker-compose` and `docker` in your system
+> and create `.env` file in **root directory** from `.env.example` template
+
+1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
+2. Install and setup `llama3.2` and `mistral` model with `ollama` inside Docker container
+3. Specify paths for `promptfoo`, `redis` and `ollama` volumes in `docker-compose.yml`
+
+> [!TIP]
+> You can use ready Docker image by specifying `zemberovka` in
+> `DOCKER_USERNAME` environment variable, but if you want, build environment by `docker compose build`
+
+To start backend and frontend servers, run `docker compose up -d`
+
+### Availiability
+
+- Backend endpoints will be availiable from `http://localhost:8000/docs`
+
+- Web application will be availiable from `http://localhost`
+
+## Setting up environment without Docker
 
 ### Backend
 
-To run the backend locally do the following steps:
+> [!NOTE]
+> Create `.env` file in **root directory** from `.env.example` template
 
-1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there.
-2. Setup `llama3.2` model locally with `ollama`.
+To run the backend locally do the following steps
+
+1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
+2. Install and setup `llama3.2` and `mistral` model locally with `ollama`
 3. Install poetry environment
 4. From project **root directory** run `poetry shell` and `poetry install --no-root` commands.
 5. Go to the `backend` directory
 6. Run `python setup.py` to setup SQL and vector stores
 7. Start server by `fastapi dev main.py`
-8. Endpoints will be availiable at `http://127.0.0.1:8000/docs`.
+
+Endpoints will be availiable at `http://localhost:8000/docs`
 
 ### Frontend
+
+> [!NOTE]
+> Create `.env` file in **root directory** from `.env.example` template and
+> provide `BACKEND_API_URL`
 
 To run the frontend locally do the following steps:
 
 1. Go to `frontend` directory
 2. Run `npm install` to install dependencies
-3. Run `npm run local` to run server at `http://localhost:5173`
+3. Run `npm run dev` to run server at `http://localhost:3000`
