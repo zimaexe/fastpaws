@@ -1,5 +1,8 @@
 # Backend
 
+> [!NOTE]
+> Create `.env` file in **root directory** from `.env.example` template
+
 To run the backend locally do the following steps:
 
 1. Upload `dataset.csv` file to the `storage/data` directory if it's not there.

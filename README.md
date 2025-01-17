@@ -28,7 +28,7 @@ Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://h
 
 > [!NOTE]
 > Install `docker-compose` and `docker` in your system
-> and create `.env` file in **root directory** from `backend/.env.example` template
+> and create `.env` file in **root directory** from `.env.example` template
 
 > [!TIP]
 > You can use ready Docker image by specifying `zemberovka` in
@@ -47,7 +47,7 @@ To start backend and frontend servers, run `docker compose up -d`
 ### Backend
 
 > [!NOTE]
-> Create `.env` file in **root directory** from `backend/.env.example` template
+> Create `.env` file in **root directory** from `.env.example` template
 
 To run the backend locally do the following steps
 
