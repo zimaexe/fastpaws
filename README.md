@@ -24,13 +24,22 @@ This project was a semestral project made as part of the Artificial Intelligence
 
 Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://huggingface.co/docs/transformers/model_doc/roberta)
 
-## Service
+## Setting up environment using Docker
 
-Project is divided on backend and frontend part
+> [!NOTE]
+> Install `docker-compose` and `docker` in your system
+
+1. To build environment, run `docker compose build`
+2. To start backend and frontend servers, run `docker compose up -d`
+
+## Setting up environment without Docker
 
 ### Backend
 
-To run the backend locally do the following steps:
+> [!NOTE]
+> Create `.env` file from `backend/.env.example` template
+
+To run the backend locally do the following steps
 
 1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there.
 2. Setup `llama3.2` model locally with `ollama`.
