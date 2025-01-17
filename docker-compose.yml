@@ -69,7 +69,7 @@ services:
     networks:
       - app_network
     environment:
-      - BACKEND_API_URL=${BACKEND_API_URL?Variable not set}
+      - REACT_APP_BACKEND_API_URL=${REACT_APP_BACKEND_API_URL?Variable not set}
 
 networks:
   app_network:
