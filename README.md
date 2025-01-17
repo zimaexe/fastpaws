@@ -62,6 +62,10 @@ To run the backend locally do the following steps
 
 ### Frontend
 
+> [!NOTE]
+> Create `.env` file in **root directory** from `.env.example` template and
+> provide `BACKEND_ADDRESS`
+
 To run the frontend locally do the following steps:
 
 1. Go to `frontend` directory

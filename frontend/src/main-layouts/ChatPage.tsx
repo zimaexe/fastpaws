@@ -2,8 +2,13 @@ import { useState } from 'react';
 import ChatMessages, { Message } from '../components/messages/ChatMessages';
 import Prompt from '../components/prompt/Prompt';
 import { useLocation } from 'react-router-dom';
+import dotenv from 'dotenv';
 
 export default function ChatPage() {
+    dotenv.config({
+        path: '../.env'
+    });
+
     const [text, setText] = useState('');
     const [, setLastBotMessage] = useState('');
     const [locked, setLocked] = useState(false);
@@ -34,7 +39,7 @@ export default function ChatPage() {
         if (text == 'sosal?')
             newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
 
-        fetch('http://147.232.205.139:8000/generate', {
+        fetch(`${process.env.BACKEND_ADDRESS}/generate`, {
             method: 'POST',
             body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
             headers: {
