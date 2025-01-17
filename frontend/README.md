@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > Create `.env` file in **root directory** from `.env.example` template and
-> provide `BACKEND_ADDRESS`
+> provide `BACKEND_API_URL`
 
 Frontend was made with React + TypeScript + Vite
 

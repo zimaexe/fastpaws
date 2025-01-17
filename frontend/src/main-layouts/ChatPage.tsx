@@ -39,7 +39,7 @@ export default function ChatPage() {
         if (text == 'sosal?')
             newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
 
-        fetch(`${process.env.BACKEND_ADDRESS}/generate`, {
+        fetch(`${process.env.BACKEND_API_URL}/generate`, {
             method: 'POST',
             body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
             headers: {
