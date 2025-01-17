@@ -32,6 +32,12 @@ Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://h
 1. To build environment, run `docker compose build`
 2. To start backend and frontend servers, run `docker compose up -d`
 
+### Availiability
+
+- Backend endpoints will be availiable from `http://127.0.0.1:8000/docs`
+
+- Web application will be availiable from `http://localhost:5173`
+
 ## Setting up environment without Docker
 
 ### Backend
@@ -41,14 +47,14 @@ Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://h
 
 To run the backend locally do the following steps
 
-1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there.
-2. Setup `llama3.2` model locally with `ollama`.
+1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
+2. Setup `llama3.2` model locally with `ollama`
 3. Install poetry environment
 4. From project **root directory** run `poetry shell` and `poetry install --no-root` commands.
 5. Go to the `backend` directory
 6. Run `python setup.py` to setup SQL and vector stores
 7. Start server by `fastapi dev main.py`
-8. Endpoints will be availiable at `http://127.0.0.1:8000/docs`.
+8. Endpoints will be availiable at `http://127.0.0.1:8000/docs`
 
 ### Frontend
 
