@@ -36,7 +36,7 @@ export default function ChatPage() {
         if (text == 'sosal?')
             newMessages = [...newMessages, { type: 'bot', text: 'yes' }];
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_URL}/generate`, {
+        fetch(`${import.meta.env.VITE_APP_BACKEND_API_URL}/generate`, {
             method: 'POST',
             body: JSON.stringify({ text: text, chat_id: document.cookie.split('=')[1],}),
             headers: {
