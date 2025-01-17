@@ -38,7 +38,7 @@ To start backend and frontend servers, run `docker compose up -d`
 
 ### Availiability
 
-- Backend endpoints will be availiable from `http://127.0.0.1:8000/docs`
+- Backend endpoints will be availiable from `http://localhost:8000/docs`
 
 - Web application will be availiable from `http://localhost:5173`
 
@@ -58,7 +58,7 @@ To run the backend locally do the following steps
 5. Go to the `backend` directory
 6. Run `python setup.py` to setup SQL and vector stores
 7. Start server by `fastapi dev main.py`
-8. Endpoints will be availiable at `http://127.0.0.1:8000/docs`
+8. Endpoints will be availiable at `http://localhost:8000/docs`
 
 ### Frontend
 

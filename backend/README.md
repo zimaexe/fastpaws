@@ -9,4 +9,4 @@ To run the backend locally do the following steps:
 5. Return to the `backend` directory
 6. Run `python setup.py` to setup SQL and vector stores
 7. Start server by `fastapi dev main.py`
-8. Endpoints will be availiable at `http://127.0.0.1:8000/docs`.
+8. Endpoints will be availiable at `http://localhost:8000/docs`.
