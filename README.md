@@ -75,4 +75,4 @@ To run the frontend locally do the following steps:
 
 1. Go to `frontend` directory
 2. Run `npm install` to install dependencies
-3. Run `npm run dev` to run server at `http://localhost`
+3. Run `npm run dev` to run server at `http://localhost:3000`
