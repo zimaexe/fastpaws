@@ -6,19 +6,19 @@ This project was a semestral project made as part of the Artificial Intelligence
 
 ## Members
 
-@matoH12 (mentor)
+[@matoH12](https://github.com/matoH12) (mentor)
 
-@faurdent (backend)
+[@faurdent](https://github.com/faurdent) (backend)
 
-@zimaexe (backend/testing)
+[@zimaexe](https://github.com/zimaexe) (backend/testing)
 
-@waterscape03 (backend/documentation)
+[@waterscape03](https://github.com/waterscape03) (backend/documentation)
 
-@vadim-ghostman (project manager)
+[@vadim-ghostman](https://github.com/vadim-ghostman) (project manager)
 
-@krrysanova (webmaster)
+[@krrysanova](https://github.com/krrysanova) (webmaster)
 
-@Kostianets (design/presentation)
+[@Kostianets](https://github.com/Kostianets) (design/presentation)
 
 ## Stack
 
