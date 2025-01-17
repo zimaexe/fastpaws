@@ -31,7 +31,7 @@ Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://h
 > and create `.env` file in **root directory** from `.env.example` template
 
 1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
-2. Install and setup `llama3.2` and `mistral` model with `ollama` indide Docker container
+2. Install and setup `llama3.2` and `mistral` model with `ollama` inside Docker container
 3. Specify paths for `promptfoo`, `redis` and `ollama` volumes in `docker-compose.yml`
 
 > [!TIP]
