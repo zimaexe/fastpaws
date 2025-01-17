@@ -103,3 +103,26 @@ body {
 	width: 60%;
 	padding: 40px 90px;
 }
+
+@media screen and (max-width: 500px) {
+	.white_field {
+		width: 80%;
+		padding: 40px 30px;
+	}
+	.doctor-cat, .doctor-cat-chat {
+		display: none;
+	}
+	.prompt.short {
+		width: 90% !important;
+	}
+	.white_field.chat {
+		width: 90%;
+		padding: 40px 20px;
+	}
+	.messages {
+		padding: 10px 0 !important;
+	}
+	.message {
+		padding: 0 5px !important;
+	}
+}
