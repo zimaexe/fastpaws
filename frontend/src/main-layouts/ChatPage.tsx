@@ -2,12 +2,9 @@ import { useState } from 'react';
 import ChatMessages, { Message } from '../components/messages/ChatMessages';
 import Prompt from '../components/prompt/Prompt';
 import { useLocation } from 'react-router-dom';
-import dotenv from 'dotenv';
 
 export default function ChatPage() {
-    dotenv.config({
-        path: '.env'
-    });
+
 
     const [text, setText] = useState('');
     const [, setLastBotMessage] = useState('');
