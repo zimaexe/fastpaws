@@ -40,7 +40,7 @@ To start backend and frontend servers, run `docker compose up -d`
 
 - Backend endpoints will be availiable from `http://localhost:8000/docs`
 
-- Web application will be availiable from `http://localhost:5173`
+- Web application will be availiable from `http://localhost`
 
 ## Setting up environment without Docker
 
@@ -66,4 +66,4 @@ To run the frontend locally do the following steps:
 
 1. Go to `frontend` directory
 2. Run `npm install` to install dependencies
-3. Run `npm run local` to run server at `http://localhost:5173`
+3. Run `npm run dev` to run server at `http://localhost`
