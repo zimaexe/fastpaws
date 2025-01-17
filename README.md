@@ -30,6 +30,10 @@ Redis, Langchain, ChromaDB, ollama, FastAPI, SQLite, Pandas, [RoBERTa](https://h
 > Install `docker-compose` and `docker` in your system
 > and create `.env` file in **root directory** from `.env.example` template
 
+1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
+2. Install and setup `llama3.2` and `mistral` model with `ollama` indide Docker container
+3. Specify paths for `promptfoo`, `redis` and `ollama` volumes in `docker-compose.yml`
+
 > [!TIP]
 > You can use ready Docker image by specifying `zemberovka` in
 > `DOCKER_USERNAME` environment variable, but if you want, build environment by `docker compose build`
@@ -53,12 +57,11 @@ To run the backend locally do the following steps
 
 1. Upload `dataset.csv` file to the `backend/storage/data` directory if it's not there
 2. Install and setup `llama3.2` and `mistral` model locally with `ollama`
-3. Specify paths to `llama3.2` and `mistral` in `docker-compose.yml`
-4. Install poetry environment
-5. From project **root directory** run `poetry shell` and `poetry install --no-root` commands.
-6. Go to the `backend` directory
-7. Run `python setup.py` to setup SQL and vector stores
-8. Start server by `fastapi dev main.py`
+3. Install poetry environment
+4. From project **root directory** run `poetry shell` and `poetry install --no-root` commands.
+5. Go to the `backend` directory
+6. Run `python setup.py` to setup SQL and vector stores
+7. Start server by `fastapi dev main.py`
 
 Endpoints will be availiable at `http://localhost:8000/docs`
 
